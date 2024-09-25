@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sn_thumbnail/app/modules/home/views/gallery_content_view.dart';
+import 'package:sn_thumbnail/app/modules/home/views/profile_content_view.dart';
+import 'package:sn_thumbnail/app/modules/home/views/project_content_view.dart';
+import 'package:sn_thumbnail/app/modules/home/views/template_content_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -8,23 +12,11 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SN Thumbnail'),
+        title: const Text('Social Network Thumbnail'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: buildContent(context),
       bottomNavigationBar: buildBottomNavBar(context),
-      floatingActionButton: buildFab(context),
-    );
-  }
-
-  Widget? buildFab(BuildContext context) {
-    return Obx(
-      () => (controller.navIndex.value == 0)
-          ? FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(Icons.add),
-            )
-          : const SizedBox(),
     );
   }
 
@@ -69,7 +61,9 @@ class HomeView extends GetView<HomeController> {
           buildNavRails(context),
 
           // content
-          buildBodyContent(context),
+          Flexible(
+            child: buildBodyContent(context),
+          )
         ],
       );
     }
@@ -81,7 +75,12 @@ class HomeView extends GetView<HomeController> {
     return Obx(
       () => IndexedStack(
         index: controller.navIndex.value,
-        children: const [],
+        children: const [
+          ProjectContentView(),
+          TemplateContentView(),
+          GalleryContentView(),
+          ProfileContentView(),
+        ],
       ),
     );
   }
