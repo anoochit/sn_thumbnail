@@ -1,0 +1,10 @@
+name: build app
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-release-windows:
+    runs-on: windows-latest

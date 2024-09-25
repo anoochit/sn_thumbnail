@@ -1,0 +1,8 @@
+# FIXME : add launcher icon for another platforms : ios, macos, linux
+icons_launcher:
+  image_path: "assets/icons/launcher.png"
+  platforms:
+    android:
+      enable: true
+    windows:
+      enable: true

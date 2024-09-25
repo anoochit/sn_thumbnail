@@ -1,0 +1,37 @@
+name: sn_thumbnail
+version: 1.0.0+1
+publish_to: none
+description: A social media thumbnail post.
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  bitsdojo_window: ^0.1.6
+  cupertino_icons: ^1.0.8
+  flutter:
+    sdk: flutter
+  gap: ^3.0.1
+  get: 5.0.0-release-candidate-9.2.1
+  http: ^1.2.2
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
+  path_provider: ^2.1.4
+  uuid: ^4.5.0
+
+dev_dependencies:
+  build_runner: ^2.4.12
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+  icons_launcher: ^3.0.0
+  isar_generator: ^3.1.0+1
+  msix: ^3.16.8
+
+flutter:
+  uses-material-design: true
+
+msix_config:
+  display_name: PDFMerger
+  logo_path: assets\icons\launcher.png
+  msix_version: 1.0.0.0
+  install_certificate: false
