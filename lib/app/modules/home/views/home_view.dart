@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sn_thumbnail/app/modules/home/views/gallery_content_view.dart';
-import 'package:sn_thumbnail/app/modules/home/views/profile_content_view.dart';
-import 'package:sn_thumbnail/app/modules/home/views/project_content_view.dart';
-import 'package:sn_thumbnail/app/modules/home/views/template_content_view.dart';
 import '../controllers/home_controller.dart';
+import 'gallery_content_view.dart';
+import 'profile_content_view.dart';
+import 'project_content_view.dart';
+import 'template_content_view.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});

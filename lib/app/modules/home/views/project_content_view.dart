@@ -17,17 +17,21 @@ class ProjectContentView extends GetView<HomeController> {
                 (controller.geminiAPIKey.isEmpty),
             child: Container(
               width: context.width,
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               color: Theme.of(context).colorScheme.errorContainer,
               child: Row(
                 children: [
-                  Icon(Icons.notifications),
-                  Text(
-                      'Please config API Key for Gemini and Stabliliy AI in your profile!'),
-                  Spacer(),
+                  const Icon(Icons.notifications),
+                  const SizedBox(width: 8.0),
+                  const Expanded(
+                    child: Text(
+                      'Please config API Key for Gemini and Stabliliy AI',
+                      maxLines: 2,
+                    ),
+                  ),
                   OutlinedButton(
                     onPressed: () => controller.navIndex.value = 3,
-                    child: Text('Goto Profile'),
+                    child: const Text('OK'),
                   )
                 ],
               ),

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'app/routes/app_pages.dart';
-import 'app/services/isar.dart';
+import 'app/services/realm.dart';
 import 'app/services/windows.dart';
 
 Future<void> main() async {
-  // init isar
-  isar = await DbService().init();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // init realm
+  initRealm();
 
   // run app
   runApp(
@@ -15,7 +17,7 @@ Future<void> main() async {
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       theme: ThemeData(
         brightness: Brightness.light,
         colorSchemeSeed: Colors.deepPurple,
@@ -28,5 +30,5 @@ Future<void> main() async {
   );
 
   // windows config
-  WindowsService.init();
+  initWindows();
 }
