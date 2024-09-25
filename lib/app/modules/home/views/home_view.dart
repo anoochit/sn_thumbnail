@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 import '../controllers/home_controller.dart';
 import 'gallery_content_view.dart';
 import 'profile_content_view.dart';

@@ -12,11 +12,14 @@ class ImageGen extends _ImageGen
   ImageGen(
     ObjectId id,
     String prompt,
-    String template,
-  ) {
+    String template, {
+    Iterable<String> contents = const [],
+  }) {
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'prompt', prompt);
     RealmObjectBase.set(this, 'template', template);
+    RealmObjectBase.set<RealmList<String>>(
+        this, 'contents', RealmList<String>(contents));
   }
 
   ImageGen._();
@@ -38,6 +41,13 @@ class ImageGen extends _ImageGen
   set template(String value) => RealmObjectBase.set(this, 'template', value);
 
   @override
+  RealmList<String> get contents =>
+      RealmObjectBase.get<String>(this, 'contents') as RealmList<String>;
+  @override
+  set contents(covariant RealmList<String> value) =>
+      throw RealmUnsupportedSetError();
+
+  @override
   Stream<RealmObjectChanges<ImageGen>> get changes =>
       RealmObjectBase.getChanges<ImageGen>(this);
 
@@ -53,6 +63,7 @@ class ImageGen extends _ImageGen
       'id': id.toEJson(),
       'prompt': prompt.toEJson(),
       'template': template.toEJson(),
+      'contents': contents.toEJson(),
     };
   }
 
@@ -69,6 +80,7 @@ class ImageGen extends _ImageGen
           fromEJson(id),
           fromEJson(prompt),
           fromEJson(template),
+          contents: fromEJson(ejson['contents']),
         ),
       _ => raiseInvalidEJson(ejson),
     };
@@ -81,6 +93,8 @@ class ImageGen extends _ImageGen
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('prompt', RealmPropertyType.string),
       SchemaProperty('template', RealmPropertyType.string),
+      SchemaProperty('contents', RealmPropertyType.string,
+          collectionType: RealmCollectionType.list),
     ]);
   }();
 
@@ -338,6 +352,87 @@ class Project extends _Project with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('title', RealmPropertyType.string),
       SchemaProperty('type', RealmPropertyType.string),
       SchemaProperty('contentId', RealmPropertyType.int),
+    ]);
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
+}
+
+class Template extends _Template
+    with RealmEntity, RealmObjectBase, RealmObject {
+  Template(
+    ObjectId id,
+    String title,
+    String template,
+  ) {
+    RealmObjectBase.set(this, 'id', id);
+    RealmObjectBase.set(this, 'title', title);
+    RealmObjectBase.set(this, 'template', template);
+  }
+
+  Template._();
+
+  @override
+  ObjectId get id => RealmObjectBase.get<ObjectId>(this, 'id') as ObjectId;
+  @override
+  set id(ObjectId value) => RealmObjectBase.set(this, 'id', value);
+
+  @override
+  String get title => RealmObjectBase.get<String>(this, 'title') as String;
+  @override
+  set title(String value) => RealmObjectBase.set(this, 'title', value);
+
+  @override
+  String get template =>
+      RealmObjectBase.get<String>(this, 'template') as String;
+  @override
+  set template(String value) => RealmObjectBase.set(this, 'template', value);
+
+  @override
+  Stream<RealmObjectChanges<Template>> get changes =>
+      RealmObjectBase.getChanges<Template>(this);
+
+  @override
+  Stream<RealmObjectChanges<Template>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Template>(this, keyPaths);
+
+  @override
+  Template freeze() => RealmObjectBase.freezeObject<Template>(this);
+
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      'id': id.toEJson(),
+      'title': title.toEJson(),
+      'template': template.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Template value) => value.toEJson();
+  static Template _fromEJson(EJsonValue ejson) {
+    if (ejson is! Map<String, dynamic>) return raiseInvalidEJson(ejson);
+    return switch (ejson) {
+      {
+        'id': EJsonValue id,
+        'title': EJsonValue title,
+        'template': EJsonValue template,
+      } =>
+        Template(
+          fromEJson(id),
+          fromEJson(title),
+          fromEJson(template),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
+    RealmObjectBase.registerFactory(Template._);
+    register(_toEJson, _fromEJson);
+    return const SchemaObject(ObjectType.realmObject, Template, 'Template', [
+      SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
+      SchemaProperty('title', RealmPropertyType.string),
+      SchemaProperty('template', RealmPropertyType.string),
     ]);
   }();
 

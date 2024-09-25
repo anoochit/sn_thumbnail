@@ -8,6 +8,7 @@ class _ImageGen {
   late ObjectId id;
   late String prompt;
   late String template;
+  late List<String> contents;
 }
 
 @RealmModel()
@@ -33,4 +34,12 @@ class _Project {
   late String title;
   late String type;
   late int contentId;
+}
+
+@RealmModel()
+class _Template {
+  @PrimaryKey()
+  late ObjectId id;
+  late String title;
+  late String template;
 }

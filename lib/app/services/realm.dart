@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:realm/realm.dart';
 
 import '../data/models/schemas.dart';
 
 late Realm realm;
 
-initRealm() {
+initRealm() async {
   final config = Configuration.local([
     ImageGen.schema,
     TextGen.schema,
@@ -12,4 +14,6 @@ initRealm() {
     Project.schema,
   ]);
   realm = Realm(config);
+
+  log(config.path);
 }
