@@ -7,7 +7,7 @@ import 'app/services/windows.dart';
 
 Future<void> main() async {
   // init isar
-  DbService().init();
+  isar = await DbService().init();
 
   // run app
   runApp(
