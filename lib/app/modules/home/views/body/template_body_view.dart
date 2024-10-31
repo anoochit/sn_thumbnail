@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/brandico.dart';
+import 'package:iconify_flutter/icons/fa_brands.dart';
 import 'package:sn_thumbnail/app/routes/app_pages.dart';
 
 import '../../../../data/project_canvas.dart';
@@ -28,14 +28,18 @@ class TemplateBodyView extends GetView {
           final title = item.title;
           final width = item.width;
           final height = item.height;
+          final ratio = item.ratio;
           return Card(
             elevation: 0.0,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: InkWell(
               onTap: () {
                 //
-                Get.toNamed(Routes.NEW_PROJECT,
-                    parameters: {'width': '$width', 'height': '$height'});
+                Get.toNamed(Routes.NEW_PROJECT, parameters: {
+                  'width': '$width',
+                  'height': '$height',
+                  'ratio': ratio
+                });
               },
               child: GridTile(
                 footer: Center(
@@ -46,7 +50,7 @@ class TemplateBodyView extends GetView {
                 ),
                 child: Center(
                   child: Iconify(
-                    Brandico.facebook_rect,
+                    FaBrands.facebook,
                     size: 64.0,
                     color: Theme.of(context).colorScheme.primary,
                   ),

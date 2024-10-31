@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 import '../controllers/new_project_controller.dart';
 
-class NewProjectView extends GetView<NewProjectController> {
+class NewProjectView extends GetView {
   const NewProjectView({super.key});
   @override
   Widget build(BuildContext context) {
@@ -17,13 +17,16 @@ class NewProjectView extends GetView<NewProjectController> {
         centerTitle: true,
       ),
       body: GetBuilder<NewProjectController>(
+        init: NewProjectController(),
         builder: (controller) {
           return Center(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(32.0),
               child: LayoutBuilder(builder: (context, constraints) {
-                final size = controller.calculateLocalSize(
-                    constraints.maxWidth, constraints.maxHeight);
+                final size = controller.calculateCanvasSize(
+                  constraints.maxWidth,
+                  constraints.maxHeight,
+                );
                 return Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(0.0),

@@ -8,7 +8,7 @@ class GridUtils {
                 ? 3
                 : (width <= 1280)
                     ? 5
-                    : 6;
+                    : 5;
   }
 
   static double responsiveSize(double width, int size) {

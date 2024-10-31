@@ -78,6 +78,9 @@ class HomeView extends GetView<HomeController> {
       () => NavigationRail(
         backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         extended: (context.width > 1200) ? true : false,
+        labelType: (context.width > 1200)
+            ? NavigationRailLabelType.none
+            : NavigationRailLabelType.all,
         destinations: List.generate(mainMenu.length, (i) {
           return NavigationRailDestination(
             icon: Icon(mainMenu[i].icon),
