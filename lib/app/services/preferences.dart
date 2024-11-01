@@ -11,7 +11,7 @@ late AppController appController;
 
 initPreferences() async {
   // init
-  appController = Get.put(AppController());
+  appController = Get.put(AppController(), permanent: true);
   prefs = await SharedPreferences.getInstance();
   // load preference
   loadPreferences();
