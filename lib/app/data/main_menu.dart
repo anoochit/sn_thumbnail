@@ -12,7 +12,7 @@ class MainMenu {
 }
 
 final mainMenu = <MainMenu>[
-  MainMenu(title: 'Library', icon: Icons.image),
-  MainMenu(title: 'Template', icon: Icons.description),
-  MainMenu(title: 'Settings', icon: Icons.account_circle),
+  MainMenu(title: 'Library', icon: Icons.folder_open),
+  MainMenu(title: 'Template', icon: Icons.description_outlined),
+  MainMenu(title: 'Settings', icon: Icons.account_circle_outlined),
 ];

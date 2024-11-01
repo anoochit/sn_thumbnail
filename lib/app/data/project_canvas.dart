@@ -19,7 +19,7 @@ class ProjectCanvas {
 
 final listCanvas = [
   ProjectCanvas(
-    title: 'FB square',
+    title: 'Square',
     width: 1200.00,
     height: 1200.00,
     ratio: "1:1",
@@ -33,28 +33,28 @@ final listCanvas = [
     icon: FaBrands.facebook,
   ),
   ProjectCanvas(
-    title: 'FB Business Page Cover',
+    title: 'Page Cover',
     width: 1200.00,
     height: 674.00,
     ratio: "16:9",
     icon: FaBrands.facebook,
   ),
   ProjectCanvas(
-    title: 'FB Profile Cover',
+    title: 'Profile Cover',
     width: 1125.00,
     height: 633.00,
     ratio: "2.7:1",
     icon: FaBrands.facebook,
   ),
   ProjectCanvas(
-    title: 'FB Story',
+    title: 'Story',
     width: 1080.00,
     height: 1920.00,
     ratio: "9:16",
     icon: FaBrands.facebook,
   ),
   ProjectCanvas(
-    title: 'YT Thumbnail',
+    title: 'Thumbnail',
     width: 1280.00,
     height: 720.00,
     ratio: "16:9",
