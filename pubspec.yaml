@@ -15,6 +15,7 @@ dependencies:
   google_fonts: ^6.2.1
   http: ^1.2.2
   iconify_flutter: ^0.0.7
+  image_picker: ^1.1.2
   isar:
     hosted: https://pub.isar-community.dev
     version: 3.1.7

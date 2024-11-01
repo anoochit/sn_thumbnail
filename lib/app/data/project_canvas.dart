@@ -43,4 +43,10 @@ final listCanvas = [
     height: 1920.00,
     ratio: "9:16",
   ),
+  ProjectCanvas(
+    title: 'YT Thumbnail',
+    width: 1280.00,
+    height: 720.00,
+    ratio: "16:9",
+  ),
 ];
