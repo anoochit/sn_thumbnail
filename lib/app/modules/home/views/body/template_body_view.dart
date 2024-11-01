@@ -31,7 +31,6 @@ class TemplateBodyView extends GetView {
           final ratio = item.ratio;
           final icon = item.icon;
           return Card(
-            elevation: 0.0,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: InkWell(
               onTap: () {

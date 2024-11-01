@@ -23,12 +23,12 @@ class LibraryBodyView extends GetView<HomeController> {
           itemCount: controller.listFiles.length,
           padding: const EdgeInsets.all(8.0),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: GridUtils.responsiveGridColumn(context.width)),
+            crossAxisCount: GridUtils.responsiveGridColumn(context.width),
+          ),
           itemBuilder: (context, index) {
             final filePath = controller.listFiles[index];
 
             return Card(
-              elevation: 0.0,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               color: Colors.white,
               child: InkWell(

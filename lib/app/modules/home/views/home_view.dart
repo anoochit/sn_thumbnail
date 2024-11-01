@@ -76,6 +76,7 @@ class HomeView extends GetView<HomeController> {
   Widget buildNavRails(BuildContext context) {
     return Obx(
       () => NavigationRail(
+        groupAlignment: 0.0,
         backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         extended: (context.width > 1200) ? true : false,
         labelType: (context.width > 1200)

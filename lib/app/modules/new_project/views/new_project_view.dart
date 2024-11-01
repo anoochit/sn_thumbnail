@@ -53,7 +53,6 @@ class NewProjectView extends GetView {
     return Align(
       alignment: Alignment.topCenter,
       child: Card(
-        elevation: 0.0,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

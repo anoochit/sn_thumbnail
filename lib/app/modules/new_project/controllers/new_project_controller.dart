@@ -12,6 +12,7 @@ import 'package:image_scaler/image_scaler.dart';
 import 'package:image_scaler/types.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
+
 import 'package:sn_thumbnail/app/modules/home/controllers/home_controller.dart';
 
 class NewProjectController extends GetxController {
