@@ -30,6 +30,8 @@ class NewProjectController extends GetxController {
   ScreenshotController screenshotController = ScreenshotController();
   String exportFilename = 'sn${DateTime.now().millisecondsSinceEpoch}.png';
 
+  RxBool editVisible = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -111,6 +113,7 @@ class NewProjectController extends GetxController {
   }
 
   Future<void> exportImage() async {
+    setEditVisible(false);
     try {
       final image = await screenshotController.capture(
           delay: const Duration(milliseconds: 200));
@@ -156,5 +159,10 @@ class NewProjectController extends GetxController {
   Future<Uint8List> convertImageToBytes(ui.Image image) async {
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     return byteData!.buffer.asUint8List();
+  }
+
+  void setEditVisible(bool value) {
+    editVisible.value = value;
+    update();
   }
 }
