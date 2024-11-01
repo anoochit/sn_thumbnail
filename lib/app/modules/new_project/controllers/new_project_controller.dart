@@ -12,6 +12,7 @@ import 'package:image_scaler/image_scaler.dart';
 import 'package:image_scaler/types.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:sn_thumbnail/app/modules/home/controllers/home_controller.dart';
 
 class NewProjectController extends GetxController {
   RxDouble width = 1200.00.obs;
@@ -134,6 +135,9 @@ class NewProjectController extends GetxController {
 
         // save image
         saveImageToFile(scaleImage).then((file) {
+          final homeController = Get.find<HomeController>();
+          homeController.loadFiles();
+
           Get.snackbar('Info', file.path);
         });
       } else {
@@ -147,8 +151,6 @@ class NewProjectController extends GetxController {
   Future<File> saveImageToFile(ui.Image image) async {
     final Uint8List bytes = await convertImageToBytes(image);
     final directory = await getApplicationDocumentsDirectory();
-
-    await Directory('${directory.path}/sn/').create();
 
     final filePath = '${directory.path}/sn/$exportFilename';
     final file = File(filePath);
