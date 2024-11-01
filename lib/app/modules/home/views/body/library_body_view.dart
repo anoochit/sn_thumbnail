@@ -29,6 +29,7 @@ class LibraryBodyView extends GetView<HomeController> {
             final filePath = controller.listFiles[index];
 
             return Card(
+              elevation: 0.0,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               color: Colors.white,
               child: InkWell(
