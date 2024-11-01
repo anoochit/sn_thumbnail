@@ -27,13 +27,13 @@ Future<void> main() async {
       themeMode: ThemeMode.light,
       theme: ThemeData(
         brightness: Brightness.light,
-        colorSchemeSeed: Colors.blueGrey,
+        colorSchemeSeed: Colors.deepPurple,
         textTheme: TextTheme(displayLarge: GoogleFonts.kanit()),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        colorSchemeSeed: Colors.blueGrey,
-        textTheme: GoogleFonts.kanitTextTheme(),
+        colorSchemeSeed: Colors.deepPurple,
+        textTheme: TextTheme(displayLarge: GoogleFonts.kanit()),
       ),
     ),
   );

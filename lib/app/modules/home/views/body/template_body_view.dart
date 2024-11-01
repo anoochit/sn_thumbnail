@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/fa_brands.dart';
 import 'package:sn_thumbnail/app/routes/app_pages.dart';
 
 import '../../../../data/project_canvas.dart';
@@ -29,6 +28,7 @@ class TemplateBodyView extends GetView {
           final width = item.width;
           final height = item.height;
           final ratio = item.ratio;
+          final icon = item.icon;
           return Card(
             elevation: 0.0,
             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -50,7 +50,7 @@ class TemplateBodyView extends GetView {
                 ),
                 child: Center(
                   child: Iconify(
-                    FaBrands.facebook,
+                    icon,
                     size: 64.0,
                     color: Theme.of(context).colorScheme.primary,
                   ),
