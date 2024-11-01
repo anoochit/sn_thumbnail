@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:sn_thumbnail/app/controllers/app_controller.dart';
 import 'package:sn_thumbnail/app/data/settings_menu.dart';
 

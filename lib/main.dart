@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'app/routes/app_pages.dart';
-import 'app/services/isar.dart';
 import 'app/services/preferences.dart';
 import 'app/services/windows.dart';
+
+// import 'app/services/isar.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +16,7 @@ Future<void> main() async {
   await initPreferences();
 
   // init isar
-  await initIsar();
+  // await initIsar();
 
   // run app
   runApp(

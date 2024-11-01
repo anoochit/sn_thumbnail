@@ -1,4 +1,5 @@
 import 'package:isar/isar.dart';
+
 part 'schemas.g.dart';
 
 @collection

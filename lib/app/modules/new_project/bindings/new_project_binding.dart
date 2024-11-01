@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 import '../controllers/new_project_controller.dart';
 
-
 class NewProjectBinding extends Binding {
   @override
   List<Bind> dependencies() {
@@ -14,8 +13,6 @@ class NewProjectBinding extends Binding {
   }
 }
 
-
-
 // class NewProjectBinding extends Bindings {
 //   @override
 //   void dependencies() {
@@ -24,5 +21,3 @@ class NewProjectBinding extends Binding {
 //     );
 //   }
 // }
-
-

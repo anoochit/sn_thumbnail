@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
+
 import 'package:sn_thumbnail/app/routes/app_pages.dart';
 
 import '../../../../data/project_canvas.dart';
