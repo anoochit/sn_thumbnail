@@ -7,7 +7,6 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:screenshot/screenshot.dart';
 
-import '../controllers/genaibox_controller.dart';
 import '../controllers/new_project_controller.dart';
 import 'dragable_widget_view.dart';
 import 'genaibox_view.dart';
