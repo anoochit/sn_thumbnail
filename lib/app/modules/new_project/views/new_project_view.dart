@@ -220,7 +220,7 @@ class NewProjectView extends GetView {
               )
             ],
           ),
-          content: GenAIBox(),
+          content: const GenAIBox(),
         );
       },
     );
