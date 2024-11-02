@@ -1,13 +1,16 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/ph.dart';
 import 'package:screenshot/screenshot.dart';
 
+import '../controllers/genaibox_controller.dart';
 import '../controllers/new_project_controller.dart';
 import 'dragable_widget_view.dart';
+import 'genaibox_view.dart';
 import 'select_color_view.dart';
 
 class NewProjectView extends GetView {
@@ -29,7 +32,7 @@ class NewProjectView extends GetView {
               buildCanvas(controller),
 
               // toolbar
-              buildToolbar(controller),
+              buildToolbar(context, controller),
             ],
           ),
           floatingActionButton: exportButton(controller, context),
@@ -38,8 +41,7 @@ class NewProjectView extends GetView {
     );
   }
 
-  FloatingActionButton exportButton(
-      NewProjectController controller, BuildContext context) {
+  Widget exportButton(NewProjectController controller, BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
         // export image
@@ -49,7 +51,7 @@ class NewProjectView extends GetView {
     );
   }
 
-  Align buildToolbar(NewProjectController controller) {
+  Widget buildToolbar(BuildContext context, NewProjectController controller) {
     return Align(
       alignment: Alignment.topCenter,
       child: Card(
@@ -108,11 +110,18 @@ class NewProjectView extends GetView {
               ),
               IconButton(
                 onPressed: () {
-                  // text right
+                  // background image
                   controller.backgroundImage();
                 },
                 icon: const Icon(Icons.image),
-              )
+              ),
+              IconButton(
+                onPressed: () {
+                  // gen ai
+                  buildGenAIDialog(context, controller);
+                },
+                icon: const Iconify(Ph.star_four_duotone),
+              ),
             ],
           ),
         ),
@@ -194,6 +203,27 @@ class NewProjectView extends GetView {
           );
         }),
       ),
+    );
+  }
+
+  void buildGenAIDialog(BuildContext context, NewProjectController controller) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Row(
+            children: [
+              const Text('Generative AI'),
+              const Spacer(),
+              IconButton.filledTonal(
+                onPressed: () => Get.backLegacy(),
+                icon: const Icon(Icons.close),
+              )
+            ],
+          ),
+          content: GenAIBox(),
+        );
+      },
     );
   }
 }

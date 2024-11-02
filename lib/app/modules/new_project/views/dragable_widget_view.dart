@@ -35,87 +35,90 @@ class DraggableWidgetView extends GetView<DraggableController> {
                     controller.left.value = details.offset.dx;
                     controller.top.value = details.offset.dy;
                   },
-                  child: GestureDetector(
-                    onLongPress: () {
-                      log("Long press detected");
-                      // You can add your desired functionality here
-                    },
-                    child: Container(
-                      width: controller.width.value,
-                      height: controller.height.value,
-                      decoration: const BoxDecoration(
-                          // color: Colors.blue,
-                          ),
-                      child: Stack(
-                        children: [
-                          SizedBox(
-                            width: controller.width.value,
-                            height: controller.height.value,
-                            child: child,
-                          ),
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.move,
+                    child: GestureDetector(
+                      onLongPress: () {
+                        log("Long press detected");
+                        // You can add your desired functionality here
+                      },
+                      child: Container(
+                        width: controller.width.value,
+                        height: controller.height.value,
+                        decoration: const BoxDecoration(
+                            // color: Colors.blue,
+                            ),
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: controller.width.value,
+                              height: controller.height.value,
+                              child: child,
+                            ),
 
-                          // top left
-                          Positioned(
-                            left: 0,
-                            top: 0,
-                            child: GestureDetector(
-                              onPanUpdate: (details) {
-                                controller.updateSize(
-                                    details.delta.dx, details.delta.dy);
-                              },
-                              child: DraggableIconTopLeft(
-                                visible: visible,
+                            // top left
+                            Positioned(
+                              left: 0,
+                              top: 0,
+                              child: GestureDetector(
+                                onPanUpdate: (details) {
+                                  controller.updateSize(
+                                      details.delta.dx, details.delta.dy);
+                                },
+                                child: DraggableIconTopLeft(
+                                  visible: visible,
+                                ),
                               ),
                             ),
-                          ),
 
-                          // top right
-                          Positioned(
-                            right: 0,
-                            top: 0,
-                            child: GestureDetector(
-                              onPanUpdate: (details) {
-                                controller.width.value += details.delta.dx;
-                                controller.height.value -= details.delta.dy;
-                                controller.top.value += details.delta.dy;
-                              },
-                              child: DraggableIconTopRight(
-                                visible: visible,
+                            // top right
+                            Positioned(
+                              right: 0,
+                              top: 0,
+                              child: GestureDetector(
+                                onPanUpdate: (details) {
+                                  controller.width.value += details.delta.dx;
+                                  controller.height.value -= details.delta.dy;
+                                  controller.top.value += details.delta.dy;
+                                },
+                                child: DraggableIconTopRight(
+                                  visible: visible,
+                                ),
                               ),
                             ),
-                          ),
 
-                          // bottom left
-                          Positioned(
-                            left: 0,
-                            bottom: 0,
-                            child: GestureDetector(
-                              onPanUpdate: (details) {
-                                controller.width.value -= details.delta.dx;
-                                controller.height.value += details.delta.dy;
-                                controller.left.value += details.delta.dx;
-                              },
-                              child: DraggableIconBottomLeft(
-                                visible: visible,
+                            // bottom left
+                            Positioned(
+                              left: 0,
+                              bottom: 0,
+                              child: GestureDetector(
+                                onPanUpdate: (details) {
+                                  controller.width.value -= details.delta.dx;
+                                  controller.height.value += details.delta.dy;
+                                  controller.left.value += details.delta.dx;
+                                },
+                                child: DraggableIconBottomLeft(
+                                  visible: visible,
+                                ),
                               ),
                             ),
-                          ),
 
-                          // bottom right
-                          Positioned(
-                            right: 0,
-                            bottom: 0,
-                            child: GestureDetector(
-                              onPanUpdate: (details) {
-                                controller.width.value += details.delta.dx;
-                                controller.height.value += details.delta.dy;
-                              },
-                              child: DraggableIconBottomRight(
-                                visible: visible,
+                            // bottom right
+                            Positioned(
+                              right: 0,
+                              bottom: 0,
+                              child: GestureDetector(
+                                onPanUpdate: (details) {
+                                  controller.width.value += details.delta.dx;
+                                  controller.height.value += details.delta.dy;
+                                },
+                                child: DraggableIconBottomRight(
+                                  visible: visible,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -153,9 +156,12 @@ class DraggableIconTopRight extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       visible: visible,
-      child: const Iconify(
-        RadixIcons.corner_top_right,
-        color: Colors.greenAccent,
+      child: const MouseRegion(
+        cursor: SystemMouseCursors.resizeUpRight,
+        child: Iconify(
+          RadixIcons.corner_top_right,
+          color: Colors.greenAccent,
+        ),
       ),
     );
   }
@@ -170,9 +176,12 @@ class DraggableIconBottomLeft extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       visible: visible,
-      child: const Iconify(
-        RadixIcons.corner_bottom_left,
-        color: Colors.greenAccent,
+      child: const MouseRegion(
+        cursor: SystemMouseCursors.resizeDownLeft,
+        child: Iconify(
+          RadixIcons.corner_bottom_left,
+          color: Colors.greenAccent,
+        ),
       ),
     );
   }
@@ -187,9 +196,12 @@ class DraggableIconBottomRight extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       visible: visible,
-      child: const Iconify(
-        RadixIcons.corner_bottom_right,
-        color: Colors.greenAccent,
+      child: const MouseRegion(
+        cursor: SystemMouseCursors.resizeDownRight,
+        child: Iconify(
+          RadixIcons.corner_bottom_right,
+          color: Colors.greenAccent,
+        ),
       ),
     );
   }

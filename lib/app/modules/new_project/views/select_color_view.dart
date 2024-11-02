@@ -40,11 +40,11 @@ class SelectedColorView extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(width),
-      onTap: () => showColorDialog(context),
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(width),
+        onTap: () => showColorDialog(context),
         child: Container(
           decoration: BoxDecoration(
             color: color,

@@ -13,8 +13,8 @@ initWindows() {
       const minSize = initialSize;
       appWindow.minSize = minSize;
       appWindow.size = initialSize;
-      appWindow.alignment = Alignment.center;
       appWindow.show();
+      appWindow.maximize();
     });
   }
 }
