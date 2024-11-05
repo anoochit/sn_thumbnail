@@ -116,7 +116,7 @@ class NewProjectView extends GetView {
               ),
               IconButton(
                 onPressed: () {
-                  // gen ai
+                  // gen ai dialog
                   buildGenAIDialog(context, controller);
                 },
                 icon: const Iconify(Ph.star_four_duotone),
@@ -172,7 +172,7 @@ class NewProjectView extends GetView {
                               decoration: const InputDecoration(
                                   border: InputBorder.none),
                               textAlign: controller.textAlign.value,
-                              style: GoogleFonts.sriracha(
+                              style: GoogleFonts.kanit(
                                 fontSize: controller.fontSize.value,
                                 fontWeight: (controller.isBold.value)
                                     ? FontWeight.w500
@@ -220,7 +220,11 @@ class NewProjectView extends GetView {
               )
             ],
           ),
-          content: const GenAIBox(),
+          content: GenAIBox(
+            ratio: controller.ratio.value,
+            width: controller.width.value.toInt(),
+            height: controller.height.value.toInt(),
+          ),
         );
       },
     );

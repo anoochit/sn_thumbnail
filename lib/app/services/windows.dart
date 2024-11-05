@@ -9,12 +9,11 @@ initWindows() {
   // TODO : check another desktop eg: linux, macos
   if (Platform.isWindows) {
     doWhenWindowReady(() {
-      const initialSize = Size(540, 920);
-      const minSize = initialSize;
-      appWindow.minSize = minSize;
+      const initialSize = Size(480, 853);
       appWindow.size = initialSize;
+      appWindow.minSize = initialSize;
+      appWindow.alignment = Alignment.topRight;
       appWindow.show();
-      appWindow.maximize();
     });
   }
 }

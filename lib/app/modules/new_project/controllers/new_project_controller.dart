@@ -13,7 +13,8 @@ import 'package:image_scaler/types.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 
-import 'package:sn_thumbnail/app/modules/home/controllers/home_controller.dart';
+import '../../../services/snackbar.dart';
+import '../../home/controllers/home_controller.dart';
 
 class NewProjectController extends GetxController {
   RxDouble width = 1200.00.obs;
@@ -136,16 +137,17 @@ class NewProjectController extends GetxController {
 
         // save image
         saveImageToFile(scaleImage).then((file) {
+          // refresh lobrary
           final homeController = Get.find<HomeController>();
           homeController.loadFiles();
-
-          Get.snackbar('Info', file.path);
+          // show snackbar
+          showGetXSnackBar(title: 'Info', message: 'Save to : ${file.path}');
         });
       } else {
-        Get.snackbar('Error', 'Cannot capture image');
+        showGetXSnackBar(title: 'Error', message: 'Cannot capture image');
       }
     } catch (e) {
-      Get.snackbar('Error', 'Cannot export scaled image');
+      showGetXSnackBar(title: 'Error', message: 'Cannot export scaled  image');
     }
   }
 

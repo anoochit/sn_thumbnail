@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
@@ -8,7 +7,12 @@ class StabilityService {
   static const _stabilityHost = 'https://api.stability.ai';
 
   // api key
-  static const String _apiKey = String.fromEnvironment("STABILITY_APIKEY");
+  String _apiKey = '';
+
+  // constructor
+  StabilityService({required String apiKey}) {
+    _apiKey = apiKey;
+  }
 
   // generate text to image
   Future<Uint8List> textToImage(
@@ -33,8 +37,6 @@ class StabilityService {
       "model": model
     };
 
-    log('$fields');
-
     // build request
     final request = http.MultipartRequest("POST", Uri.parse(url));
     request.headers.addAll(headers);
@@ -51,11 +53,11 @@ class StabilityService {
         return Uint8List.fromList(bytes);
       } else {
         // throw error
-        throw ("Error: ${response.statusCode} ${response.reasonPhrase}");
+        throw ("${response.statusCode} ${response.reasonPhrase}");
       }
     } catch (error) {
       // throw error
-      throw ("Error: $error");
+      throw ("$error");
     }
   }
 }
