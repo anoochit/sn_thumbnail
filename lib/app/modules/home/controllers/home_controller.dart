@@ -4,6 +4,9 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../../controllers/app_controller.dart';
+import '../../../services/snackbar.dart';
+
 class HomeController extends GetxController {
   // navigation index
   final navIndex = 0.obs;
@@ -41,5 +44,16 @@ class HomeController extends GetxController {
         listGallery.add(file.path);
       }
     });
+  }
+
+  checkAPIKey() {
+    final appController = Get.find<AppController>();
+    if (appController.geminiAPIKey.value.isEmpty ||
+        appController.stabilityAPIKey.value.isEmpty) {
+      showGetXSnackBar(
+        title: 'No API Key',
+        message: 'No API Key, config your API Key in settings menu',
+      );
+    }
   }
 }

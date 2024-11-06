@@ -13,6 +13,9 @@ class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
+    // check api key
+    controller.checkAPIKey();
+
     return Scaffold(
       body: buildContent(context),
       bottomNavigationBar: buildBottomNavBar(context),
