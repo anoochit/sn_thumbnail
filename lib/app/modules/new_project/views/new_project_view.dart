@@ -138,6 +138,7 @@ class NewProjectView extends GetView {
             constraints.maxHeight,
           );
           return Card(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(0.0),
             ),
