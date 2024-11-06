@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../data/main_menu.dart';
 import '../controllers/home_controller.dart';
+import 'body/gallery_body_view.dart';
 import 'body/library_body_view.dart';
 import 'body/settings_body_view.dart';
 import 'body/template_body_view.dart';
@@ -66,6 +67,7 @@ class HomeView extends GetView<HomeController> {
         index: controller.navIndex.value,
         children: const [
           LibraryBodyView(),
+          GalleryBodyView(),
           TemplateBodyView(),
           SettingsBodyView(),
         ],

@@ -10,6 +10,9 @@ class HomeController extends GetxController {
 
   RxList<String> listFiles = <String>[].obs;
 
+  RxList<String> listGallery = <String>[].obs;
+  RxList<String> listLibrary = <String>[].obs;
+
   // init
   @override
   void onInit() {
@@ -31,7 +34,11 @@ class HomeController extends GetxController {
         .list()
         .asBroadcastStream()
         .listen((file) {
-      listFiles.add(file.path);
+      if (file.path.contains(RegExp(r"sn\d+"))) {
+        listLibrary.add(file.path);
+      } else {
+        listGallery.add(file.path);
+      }
     });
   }
 }
