@@ -45,29 +45,35 @@ class SelectedColorView extends GetView<SelectColorController> {
       builder: (context) => AlertDialog(
         title: const Text('Color picker'),
         content: SizedBox(
-          width: 280.0,
-          child: Obx(
-            () => Wrap(
-              children: controller.palette
-                  .map((e) => Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: ClipOval(
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(width),
-                            onTap: () {
-                              onChanged(e);
-                            },
-                            child: Container(
-                              width: width,
-                              height: height,
-                              color: e,
-                            ),
-                          ),
-                        ),
-                      ))
-                  .toList(),
-            ),
-          ),
+          width: 360.0,
+          child: Obx(() {
+            final totalColors =
+                (controller.baseColor.length + controller.palette.value.length);
+            final colors = <Color>[];
+            colors.addAll(controller.baseColor);
+            colors.addAll(controller.palette.value);
+            return Wrap(
+              children: List.generate(totalColors, (index) {
+                final item = colors[index];
+                return Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: ClipOval(
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(width),
+                      onTap: () {
+                        onChanged(item);
+                      },
+                      child: Container(
+                        width: width,
+                        height: height,
+                        color: item,
+                      ),
+                    ),
+                  ),
+                );
+              }),
+            );
+          }),
         ),
       ),
     );

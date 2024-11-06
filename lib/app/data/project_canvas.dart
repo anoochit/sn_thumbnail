@@ -26,7 +26,7 @@ final listCanvas = [
     icon: FaBrands.facebook,
   ),
   ProjectCanvas(
-    title: 'FB Photo posts',
+    title: 'Photo posts',
     width: 1200.00,
     height: 630.00,
     ratio: "1.91:1",

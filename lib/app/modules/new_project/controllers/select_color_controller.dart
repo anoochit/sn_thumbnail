@@ -32,19 +32,12 @@ class SelectColorController extends GetxController {
 
   RxList<Color> palette = <Color>[].obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    palette.value = baseColor;
+  updatePallete({required File file}) async {
+    final imagePalette =
+        await PaletteGenerator.fromImageProvider(FileImage(file));
+
+    palette.clear();
+    palette.addAll(imagePalette.colors);
+    update();
   }
-
-  // updatePallete({required File file}) async {
-  //   final imagePalette =
-  //       await PaletteGenerator.fromImageProvider(FileImage(file));
-
-  //   palette.clear();
-  //   palette.addAll(baseColor);
-  //   palette.addAll(imagePalette.colors);
-  //   update();
-  // }
 }

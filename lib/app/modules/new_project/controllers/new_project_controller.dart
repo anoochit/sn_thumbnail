@@ -10,13 +10,12 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_scaler/image_scaler.dart';
 import 'package:image_scaler/types.dart';
-import 'package:palette_generator/palette_generator.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:sn_thumbnail/app/modules/new_project/controllers/select_color_controller.dart';
 
 import '../../../services/snackbar.dart';
 import '../../home/controllers/home_controller.dart';
+import 'select_color_controller.dart';
 
 class NewProjectController extends GetxController {
   RxDouble width = 1200.00.obs;
@@ -107,6 +106,8 @@ class NewProjectController extends GetxController {
     if (xfiles != null) {
       log('file = ${xfiles.path}');
       backgroundImageData.value = await xfiles.readAsBytes();
+
+      Get.find<SelectColorController>().updatePallete(file: File(xfiles.path));
       update();
     }
   }

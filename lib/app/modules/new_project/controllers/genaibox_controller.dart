@@ -13,6 +13,7 @@ import '../../../services/snackbar.dart';
 import '../../../services/stability.dart';
 import '../../home/controllers/home_controller.dart';
 import 'new_project_controller.dart';
+import 'select_color_controller.dart';
 
 class GenAIBoxController extends GetxController {
   // app controller
@@ -121,6 +122,7 @@ class GenAIBoxController extends GetxController {
     final newProjectController = Get.find<NewProjectController>();
 
     final byte = await File(path).readAsBytes();
+    Get.find<SelectColorController>().updatePallete(file: File(path));
     newProjectController.backgroundImageData.value = byte;
     newProjectController.update();
   }
