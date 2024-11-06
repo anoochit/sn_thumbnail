@@ -26,7 +26,8 @@ class HomeController extends GetxController {
   // load file from directory
   Future<void> loadFiles() async {
     log('load file');
-    listFiles.clear();
+    listGallery.clear();
+    listLibrary.clear();
     final directory = await getApplicationDocumentsDirectory();
     await Directory('${directory.path}/sn/').create();
 
