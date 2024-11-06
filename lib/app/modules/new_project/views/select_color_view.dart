@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-class SelectedColorView extends GetView {
-  SelectedColorView(
+import '../controllers/select_color_controller.dart';
+
+class SelectedColorView extends GetView<SelectColorController> {
+  const SelectedColorView(
       {super.key,
       required this.onChanged,
       required this.color,
@@ -14,29 +16,6 @@ class SelectedColorView extends GetView {
   final Color color;
   final double width;
   final double height;
-
-  final List<Color> colors = [
-    Colors.red,
-    Colors.pink,
-    Colors.purple,
-    Colors.deepPurple,
-    Colors.indigo,
-    Colors.blue,
-    Colors.lightBlue,
-    Colors.cyan,
-    Colors.teal,
-    Colors.green,
-    Colors.lightGreen,
-    Colors.lime,
-    Colors.yellow,
-    Colors.amber,
-    Colors.orange,
-    Colors.deepOrange,
-    Colors.brown,
-    Colors.grey,
-    Colors.black,
-    Colors.white,
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -64,27 +43,30 @@ class SelectedColorView extends GetView {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        title: const Text('Color picker'),
         content: SizedBox(
           width: 280.0,
-          child: Wrap(
-            children: colors
-                .map((e) => Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: ClipOval(
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(width),
-                          onTap: () {
-                            onChanged(e);
-                          },
-                          child: Container(
-                            width: width,
-                            height: height,
-                            color: e,
+          child: Obx(
+            () => Wrap(
+              children: controller.palette
+                  .map((e) => Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: ClipOval(
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(width),
+                            onTap: () {
+                              onChanged(e);
+                            },
+                            child: Container(
+                              width: width,
+                              height: height,
+                              color: e,
+                            ),
                           ),
                         ),
-                      ),
-                    ))
-                .toList(),
+                      ))
+                  .toList(),
+            ),
           ),
         ),
       ),

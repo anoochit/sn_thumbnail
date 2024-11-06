@@ -16,3 +16,6 @@ A Refactory [ytThumbnail](https://github.com/anoochit/ytThumbnail), a simple soc
 
 ![](/screenshots/screenshot05.png)
 
+![](/screenshots/screenshot06.png)
+
+![](/screenshots/screenshot07.png)
