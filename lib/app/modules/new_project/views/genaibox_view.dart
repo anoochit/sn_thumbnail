@@ -1,7 +1,8 @@
 import 'dart:io';
 
-import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
+
+import 'package:clipboard/clipboard.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';

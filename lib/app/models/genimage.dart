@@ -1,8 +1,8 @@
+import 'dart:convert';
+
 // To parse this JSON data, do
 //
 //     final genImage = genImageFromJson(jsonString);
-
-import 'dart:convert';
 
 List<GenImage> genImageFromJson(String str) =>
     List<GenImage>.from(json.decode(str).map((x) => GenImage.fromJson(x)));

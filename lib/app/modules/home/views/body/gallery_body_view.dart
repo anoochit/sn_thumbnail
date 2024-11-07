@@ -3,11 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
 
-import 'package:sn_thumbnail/app/services/gridview.dart';
-import 'package:sn_thumbnail/app/services/snackbar.dart';
-
+import '../../../../services/gridview.dart';
+import '../../../../services/snackbar.dart';
 import '../../controllers/home_controller.dart';
 
 class GalleryBodyView extends GetView<HomeController> {

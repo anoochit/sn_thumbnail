@@ -26,8 +26,6 @@ class NewProjectBinding extends Binding {
   }
 }
 
-
-
 // class NewProjectBinding extends Bindings {
 //   @override
 //   void dependencies() {
