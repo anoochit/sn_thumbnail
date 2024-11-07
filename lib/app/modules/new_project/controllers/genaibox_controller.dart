@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../controllers/app_controller.dart';
@@ -99,6 +100,13 @@ class GenAIBoxController extends GetxController {
       final fileName =
           '${dir.path}/sn/ig${DateTime.now().microsecondsSinceEpoch}.png';
       await File(fileName).writeAsBytes(bytes);
+
+      // save to gallery
+      if (Platform.isAndroid || Platform.isIOS) {
+        await ImageGallerySaverPlus.saveFile(fileName).then((v) {
+          showGetXSnackBar(title: 'Saved', message: 'Save to gallery!');
+        });
+      }
 
       listGenImage.add(GenImage(image: fileName));
 

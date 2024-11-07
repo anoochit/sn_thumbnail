@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
+import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_scaler/image_scaler.dart';
 import 'package:image_scaler/types.dart';
@@ -162,6 +163,14 @@ class NewProjectController extends GetxController {
     final filePath = '${directory.path}/sn/$exportFilename';
     final file = File(filePath);
     await file.writeAsBytes(bytes);
+
+    // save to gallery
+    if (Platform.isAndroid || Platform.isIOS) {
+      await ImageGallerySaverPlus.saveFile(filePath).then((v) {
+        showGetXSnackBar(title: 'Saved', message: 'Save to gallery!');
+      });
+    }
+
     return file;
   }
 

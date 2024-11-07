@@ -137,66 +137,59 @@ class NewProjectView extends GetView {
             constraints.maxWidth,
             constraints.maxHeight,
           );
-          return Card(
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(0.0),
-            ),
-            child: Screenshot(
-              controller: controller.screenshotController,
-              child: GestureDetector(
-                onTap: () {
-                  controller.setEditVisible(false);
-                },
-                child: Container(
-                  color: Colors.white,
-                  width: size.width,
-                  height: size.height,
-                  child: Stack(
-                    children: [
-                      // backgound image
-                      (controller.backgroundImageData.value.lengthInBytes == 0)
-                          ? const SizedBox()
-                          : Positioned.fill(
-                              child: Image.memory(
-                                controller.backgroundImageData.value,
-                                fit: BoxFit.cover,
-                              ),
+          return Screenshot(
+            controller: controller.screenshotController,
+            child: GestureDetector(
+              onTap: () {
+                controller.setEditVisible(false);
+              },
+              child: Container(
+                color: Colors.white,
+                width: size.width,
+                height: size.height,
+                child: Stack(
+                  children: [
+                    // backgound image
+                    (controller.backgroundImageData.value.lengthInBytes == 0)
+                        ? const SizedBox()
+                        : Positioned.fill(
+                            child: Image.memory(
+                              controller.backgroundImageData.value,
+                              fit: BoxFit.cover,
                             ),
-                      // text field
-                      DraggableWidgetView(
-                          visible: controller.editVisible.value,
-                          child: Padding(
-                            padding: const EdgeInsets.all(36.0),
-                            child: TextFormField(
-                              controller: controller.textController,
-                              decoration: const InputDecoration(
-                                  border: InputBorder.none),
-                              textAlign: controller.textAlign.value,
-                              style: GoogleFonts.sriracha(
-                                fontSize: controller.fontSize.value,
-                                fontWeight: (controller.isBold.value)
-                                    ? FontWeight.w500
-                                    : FontWeight.w400,
-                                color: controller.fontColor.value,
-                              ),
-                              maxLines: null,
-                              onChanged: (value) {
-                                controller.text.value = value;
-                              },
-                              onTap: () {
-                                log('tap inside');
-                                controller.setEditVisible(true);
-                              },
-                              onTapOutside: (event) {
-                                log('tap outside');
-                                FocusScope.of(context)
-                                    .requestFocus(FocusNode());
-                              },
+                          ),
+                    // text field
+                    DraggableWidgetView(
+                        visible: controller.editVisible.value,
+                        child: Padding(
+                          padding: const EdgeInsets.all(36.0),
+                          child: TextFormField(
+                            controller: controller.textController,
+                            decoration:
+                                const InputDecoration(border: InputBorder.none),
+                            textAlign: controller.textAlign.value,
+                            style: GoogleFonts.sriracha(
+                              fontSize: controller.fontSize.value,
+                              fontWeight: (controller.isBold.value)
+                                  ? FontWeight.w500
+                                  : FontWeight.w400,
+                              color: controller.fontColor.value,
                             ),
-                          )),
-                    ],
-                  ),
+                            maxLines: null,
+                            onChanged: (value) {
+                              controller.text.value = value;
+                            },
+                            onTap: () {
+                              log('tap inside');
+                              controller.setEditVisible(true);
+                            },
+                            onTapOutside: (event) {
+                              log('tap outside');
+                              FocusScope.of(context).requestFocus(FocusNode());
+                            },
+                          ),
+                        )),
+                  ],
                 ),
               ),
             ),
