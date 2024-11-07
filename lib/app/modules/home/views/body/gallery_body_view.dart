@@ -39,14 +39,6 @@ class GalleryBodyView extends GetView<HomeController> {
                   onTap: () {
                     //
                   },
-                  onDoubleTap: () async {
-                    if (Platform.isAndroid || Platform.isIOS) {
-                      await ImageGallerySaverPlus.saveFile(filePath).then((v) {
-                        showGetXSnackBar(
-                            title: 'Saved', message: 'Save to gallery!');
-                      });
-                    }
-                  },
                   onLongPress: () {
                     showDialog(
                       context: context,
