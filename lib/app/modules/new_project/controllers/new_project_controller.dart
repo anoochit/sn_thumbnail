@@ -32,7 +32,6 @@ class NewProjectController extends GetxController {
   Rx<Uint8List> backgroundImageData = Uint8List(0).obs;
 
   ScreenshotController screenshotController = ScreenshotController();
-  String exportFilename = 'sn${DateTime.now().millisecondsSinceEpoch}.png';
 
   RxBool editVisible = false.obs;
 
@@ -157,6 +156,8 @@ class NewProjectController extends GetxController {
   Future<File> saveImageToFile(ui.Image image) async {
     final Uint8List bytes = await convertImageToBytes(image);
     final directory = await getApplicationDocumentsDirectory();
+
+    String exportFilename = 'sn${DateTime.now().millisecondsSinceEpoch}.png';
 
     final filePath = '${directory.path}/sn/$exportFilename';
     final file = File(filePath);
