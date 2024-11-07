@@ -45,7 +45,7 @@ class SelectedColorView extends GetView<SelectColorController> {
       builder: (context) => AlertDialog(
         title: const Text('Color picker'),
         content: SizedBox(
-          width: 360.0,
+          width: (width * 2) * 6,
           child: Obx(() {
             final totalColors =
                 (controller.baseColor.length + controller.palette.value.length);
@@ -64,8 +64,8 @@ class SelectedColorView extends GetView<SelectColorController> {
                         onChanged(item);
                       },
                       child: Container(
-                        width: width,
-                        height: height,
+                        width: width * 2,
+                        height: height * 2,
                         color: item,
                       ),
                     ),

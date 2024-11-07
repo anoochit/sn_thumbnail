@@ -33,7 +33,6 @@ class LibraryBodyView extends GetView<HomeController> {
             return Card(
               elevation: 0.0,
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              color: Colors.white,
               child: InkWell(
                 onTap: () {
                   //
