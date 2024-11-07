@@ -27,7 +27,7 @@ class NewProjectController extends GetxController {
   RxString text = 'Example Text'.obs;
   RxDouble fontSize = 40.0.obs;
   RxBool isBold = false.obs;
-  Rx<TextAlign> textAlign = TextAlign.center.obs;
+  Rx<TextAlign> textAlign = TextAlign.left.obs;
   Rx<Color> fontColor = Colors.black.obs;
 
   Rx<Uint8List> backgroundImageData = Uint8List(0).obs;
