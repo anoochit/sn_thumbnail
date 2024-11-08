@@ -93,25 +93,29 @@ class GenAIBoxController extends GetxController {
       ratio = "3:2";
     }
 
-    for (int i = 0; i < totalImage; i++) {
-      final bytes = await StabilityService(apiKey: apiKey)
-          .textToImage(prompt: prompt, ratio: ratio);
+    try {
+      for (int i = 0; i < totalImage; i++) {
+        final bytes = await StabilityService(apiKey: apiKey)
+            .textToImage(prompt: prompt, ratio: ratio);
 
-      // save to origial file
-      final fileName =
-          '${dir.path}/sn/ig${DateTime.now().microsecondsSinceEpoch}.png';
-      await File(fileName).writeAsBytes(bytes);
+        // save to origial file
+        final fileName =
+            '${dir.path}/sn/ig${DateTime.now().microsecondsSinceEpoch}.png';
+        await File(fileName).writeAsBytes(bytes);
 
-      // save to gallery
-      if (Platform.isAndroid || Platform.isIOS) {
-        await ImageGallerySaverPlus.saveFile(fileName).then((v) {
-          showGetXSnackBar(title: 'Saved', message: 'Save to gallery!');
-        });
+        // save to gallery
+        if (Platform.isAndroid || Platform.isIOS) {
+          await ImageGallerySaverPlus.saveFile(fileName).then((v) {
+            showGetXSnackBar(title: 'Saved', message: 'Save to gallery!');
+          });
+        } else {
+          showGetXSnackBar(title: 'Saved', message: 'Save to $fileName');
+        }
+
+        listGenImage.add(GenImage(image: fileName));
       }
-
-      listGenImage.add(GenImage(image: fileName));
-
-      showGetXSnackBar(title: 'Info', message: 'Save to $fileName');
+    } catch (e) {
+      showGetXSnackBar(title: 'Error', message: '$e');
     }
 
     final homeController = Get.find<HomeController>();

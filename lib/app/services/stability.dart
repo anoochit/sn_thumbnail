@@ -53,7 +53,7 @@ class StabilityService {
         return Uint8List.fromList(bytes);
       } else {
         // throw error
-        throw ("${response.statusCode} ${response.reasonPhrase}");
+        throw ("${response.reasonPhrase}");
       }
     } catch (error) {
       // throw error
