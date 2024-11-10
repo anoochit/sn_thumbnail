@@ -144,7 +144,7 @@ class NewProjectController extends GetxController {
           final homeController = Get.find<HomeController>();
           homeController.loadFiles();
           // show snackbar
-          showGetXSnackBar(title: 'Info', message: 'Save to : ${file.path}');
+          // showGetXSnackBar(title: 'Info', message: 'Save to : ${file.path}');
         });
       } else {
         showGetXSnackBar(title: 'Error', message: 'Cannot capture image');
@@ -160,6 +160,7 @@ class NewProjectController extends GetxController {
 
     String exportFilename = 'sn${DateTime.now().millisecondsSinceEpoch}.png';
 
+    // save to file
     final filePath = '${directory.path}/sn/$exportFilename';
     final file = File(filePath);
     await file.writeAsBytes(bytes);
@@ -169,6 +170,8 @@ class NewProjectController extends GetxController {
       await ImageGallerySaverPlus.saveFile(filePath).then((v) {
         showGetXSnackBar(title: 'Saved', message: 'Save to gallery!');
       });
+    } else {
+      showGetXSnackBar(title: 'Saved', message: 'Save to document!');
     }
 
     return file;
