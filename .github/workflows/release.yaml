@@ -64,7 +64,7 @@ jobs:
         uses: thedoctor0/zip-release@master
         with:
           type: "zip"
-          filename: winapp-${{github.ref_name}}-macos.zip
+          filename: sn_thumbnail-${{github.ref_name}}-macos.zip
           directory: build/macos/Build/Products/Release
       - name: macOS Release
         uses: softprops/action-gh-release@v1
