@@ -41,14 +41,16 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - name: Build artifacts
-        run: dart run msix:create
+        run:  |
+            dart run msix:create
+            mv build/windows/x64/runner/Release/sn_thumbnail.msix build/windows/x64/runner/Release/sn_thumbnail-${{github.ref_name}}-windows.msix
       - name: Windows Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/v')
         env:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
         with:
-          files: build/windows/x64/runner/Release/sn_thumbnail.msix
+          files: build/windows/x64/runner/Release/sn_thumbnail-${{github.ref_name}}-windows.msix
 
   build-macos:
     runs-on: macos-latest
