@@ -1,0 +1,28 @@
+name: sn-thumbnail
+version: 1.0.3
+summary: Social Network Thumbnail
+description: A simple social network post creator (text, image) using Gen AI.
+
+confinement: strict
+base: core22
+grade: stable
+
+slots:
+  dbus-sn-thumbnail: # adjust accordingly to your app name
+    interface: dbus
+    bus: session
+    name: org.bar.sn_thumbnail # adjust accordingly to your app name and
+    
+apps:
+  sn-thumbnail:
+    command: sn_thumbnail
+    extensions: [gnome] # gnome includes the libraries required by flutter
+    plugs:
+    - network
+    slots:
+      - dbus-sn-thumbnail
+parts:
+  sn-thumbnail:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart # The main entry-point file of the application

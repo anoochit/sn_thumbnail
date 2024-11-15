@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=snThumbnail
+Comment=A social media thumbnail post
+Exec=sn_thumbnail
+Icon=${SNAP}/meta/gui/sn-thumbnail.png
+Terminal=false
+Type=Application
+Categories=Entertainment;

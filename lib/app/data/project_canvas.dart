@@ -60,4 +60,11 @@ final listCanvas = [
     ratio: "16:9",
     icon: FaBrands.youtube,
   ),
+    ProjectCanvas(
+    title: 'Pinto',
+    width: 730.00,
+    height: 310.00,
+    ratio: "73:31",
+    icon: FaBrands.youtube,
+  ),
 ];
