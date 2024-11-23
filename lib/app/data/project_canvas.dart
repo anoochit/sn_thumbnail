@@ -1,4 +1,5 @@
 import 'package:iconify_flutter/icons/fa_brands.dart';
+import 'package:iconify_flutter/icons/fa_solid.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
@@ -60,11 +61,11 @@ final listCanvas = [
     ratio: "16:9",
     icon: FaBrands.youtube,
   ),
-    ProjectCanvas(
+  ProjectCanvas(
     title: 'Pinto',
     width: 730.00,
     height: 310.00,
     ratio: "73:31",
-    icon: FaBrands.youtube,
+    icon: FaSolid.book,
   ),
 ];

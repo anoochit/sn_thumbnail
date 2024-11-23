@@ -38,6 +38,11 @@ class DraggableWidgetView extends GetView<DraggableController> {
                   child: MouseRegion(
                     cursor: SystemMouseCursors.move,
                     child: GestureDetector(
+                      onTap: () {
+                        log("on tap detected");
+                        //
+                        
+                      },
                       onLongPress: () {
                         log("Long press detected");
                         // You can add your desired functionality here
