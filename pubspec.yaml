@@ -1,5 +1,5 @@
 name: sn_thumbnail
-version: 1.0.4+1
+version: 1.0.5+1
 publish_to: none
 description: A social media thumbnail post.
 environment:
@@ -54,5 +54,5 @@ flutter:
 msix_config:
   display_name: SNThumbnail
   logo_path: assets\icons\launcher.png
-  msix_version: 1.0.4.0
+  msix_version: 1.0.5.0
   install_certificate: false
