@@ -5,7 +5,7 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = sn_thumbnail
+PRODUCT_NAME = snThumbnail
 
 // The application's bundle identifier
 PRODUCT_BUNDLE_IDENTIFIER = net.redlinesoft.snThumbnail

@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../routes/app_pages.dart';
 import '../../../../services/gridview.dart';
 import '../../../../services/snackbar.dart';
+import '../../../view_image/controllers/view_image_controller.dart';
 import '../../controllers/home_controller.dart';
 
 class LibraryBodyView extends GetView<HomeController> {
@@ -33,7 +35,9 @@ class LibraryBodyView extends GetView<HomeController> {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: InkWell(
                 onTap: () {
-                  //
+                  // show preview
+                  Get.put(ViewImageController()).path.value = filePath;
+                  Get.toNamed(Routes.VIEW_IMAGE);
                 },
                 onLongPress: () {
                   showDialog(
