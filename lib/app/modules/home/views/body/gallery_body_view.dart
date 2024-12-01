@@ -68,7 +68,10 @@ class GalleryBodyView extends GetView<HomeController> {
                     );
                   },
                   child: GridTile(
-                    child: Image.file(File(filePath)),
+                    child: Image.file(
+                      File(filePath),
+                      filterQuality: FilterQuality.high,
+                    ),
                   ),
                 ),
               );

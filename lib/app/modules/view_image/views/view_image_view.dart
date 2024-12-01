@@ -22,7 +22,10 @@ class ViewImageView extends GetView<ViewImageController> {
         ],
       ),
       body: Center(
-        child: Obx(() => Image.file(File(controller.path.value))),
+        child: Obx(() => Image.file(
+              File(controller.path.value),
+              filterQuality: FilterQuality.high,
+            )),
       ),
     );
   }
