@@ -9,10 +9,13 @@ import 'package:iconify_flutter/icons/radix_icons.dart';
 import '../controllers/dragable_contreoller.dart';
 
 class DraggableWidgetView extends GetView<DraggableController> {
-  const DraggableWidgetView(
-      {super.key, required this.child, required this.visible});
+  const DraggableWidgetView({
+    super.key,
+    required this.child,
+    // required this.visible,
+  });
   final Widget child;
-  final bool visible;
+  // final bool visible;
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +43,7 @@ class DraggableWidgetView extends GetView<DraggableController> {
                     child: GestureDetector(
                       onTap: () {
                         log("on tap detected");
-                        //
-                        
+                        controller.visible.value = !controller.visible.value;
                       },
                       onLongPress: () {
                         log("Long press detected");
@@ -71,7 +73,7 @@ class DraggableWidgetView extends GetView<DraggableController> {
                                       details.delta.dx, details.delta.dy);
                                 },
                                 child: DraggableIconTopLeft(
-                                  visible: visible,
+                                  visible: controller.visible.value,
                                 ),
                               ),
                             ),
@@ -87,7 +89,7 @@ class DraggableWidgetView extends GetView<DraggableController> {
                                   controller.top.value += details.delta.dy;
                                 },
                                 child: DraggableIconTopRight(
-                                  visible: visible,
+                                  visible: controller.visible.value,
                                 ),
                               ),
                             ),
@@ -103,7 +105,7 @@ class DraggableWidgetView extends GetView<DraggableController> {
                                   controller.left.value += details.delta.dx;
                                 },
                                 child: DraggableIconBottomLeft(
-                                  visible: visible,
+                                  visible: controller.visible.value,
                                 ),
                               ),
                             ),
@@ -118,7 +120,7 @@ class DraggableWidgetView extends GetView<DraggableController> {
                                   controller.height.value += details.delta.dy;
                                 },
                                 child: DraggableIconBottomRight(
-                                  visible: visible,
+                                  visible: controller.visible.value,
                                 ),
                               ),
                             ),

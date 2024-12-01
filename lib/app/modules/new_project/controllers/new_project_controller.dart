@@ -29,6 +29,7 @@ class NewProjectController extends GetxController {
   RxBool isBold = false.obs;
   Rx<TextAlign> textAlign = TextAlign.left.obs;
   Rx<Color> fontColor = Colors.black.obs;
+  Rx<Color> backgroundColor = Colors.white.obs;
 
   Rx<Uint8List> backgroundImageData = Uint8List(0).obs;
 
@@ -114,6 +115,12 @@ class NewProjectController extends GetxController {
 
   setFontColor(Color color) {
     fontColor.value = color;
+    update();
+    Get.backLegacy();
+  }
+
+  setBackgroundColor(Color color) {
+    backgroundColor.value = color;
     update();
     Get.backLegacy();
   }

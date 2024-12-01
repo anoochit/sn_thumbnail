@@ -2,9 +2,10 @@ import 'package:get/get.dart';
 
 class DraggableController extends GetxController {
   RxDouble width = 400.0.obs;
-  RxDouble height = 200.0.obs;
-  RxDouble left = 50.0.obs;
+  RxDouble height = 120.0.obs;
+  RxDouble left = 10.0.obs;
   RxDouble top = 50.0.obs;
+  RxBool visible = false.obs;
 
   void updatePosition(double deltaX, double deltaY) {
     left.value += deltaX;

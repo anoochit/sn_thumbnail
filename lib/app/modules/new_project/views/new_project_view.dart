@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:sn_thumbnail/app/modules/new_project/controllers/dragable_contreoller.dart';
 
 import '../controllers/new_project_controller.dart';
 import 'dragable_widget_view.dart';
@@ -87,6 +88,12 @@ class NewProjectView extends GetView {
                 onChanged: (value) => controller.setFontColor(value),
                 color: controller.fontColor.value,
               ),
+              SelectedColorView(
+                width: 24.0,
+                height: 24.0,
+                onChanged: (value) => controller.setBackgroundColor(value),
+                color: controller.backgroundColor.value,
+              ),
               IconButton(
                 onPressed: () {
                   // text left
@@ -156,7 +163,7 @@ class NewProjectView extends GetView {
                   child: Container(
                     width: size.width,
                     height: size.height,
-                    color: Colors.white,
+                    color: controller.backgroundColor.value,
                     child: Stack(
                       children: [
                         // backgound image
@@ -171,36 +178,39 @@ class NewProjectView extends GetView {
                               ),
                         // text field
                         DraggableWidgetView(
-                            visible: controller.editVisible.value,
+                            // visible: controller.editVisible.value,
                             child: Padding(
-                              padding: const EdgeInsets.all(36.0),
-                              child: TextFormField(
-                                controller: controller.textController,
-                                decoration: const InputDecoration(
-                                    border: InputBorder.none),
-                                textAlign: controller.textAlign.value,
-                                style: GoogleFonts.sriracha(
-                                  fontSize: controller.fontSize.value,
-                                  fontWeight: (controller.isBold.value)
-                                      ? FontWeight.w500
-                                      : FontWeight.w400,
-                                  color: controller.fontColor.value,
-                                ),
-                                maxLines: null,
-                                onChanged: (value) {
-                                  controller.text.value = value;
-                                },
-                                onTap: () {
-                                  log('tap inside');
-                                  controller.setEditVisible(true);
-                                },
-                                onTapOutside: (event) {
-                                  log('tap outside');
-                                  FocusScope.of(context)
-                                      .requestFocus(FocusNode());
-                                },
-                              ),
-                            )),
+                          padding: const EdgeInsets.all(24.0),
+                          child: TextFormField(
+                            controller: controller.textController,
+                            decoration:
+                                const InputDecoration(border: InputBorder.none),
+                            textAlign: controller.textAlign.value,
+                            style: GoogleFonts.kanit(
+                              fontSize: controller.fontSize.value,
+                              fontWeight: (controller.isBold.value)
+                                  ? FontWeight.w500
+                                  : FontWeight.w400,
+                              color: controller.fontColor.value,
+                            ),
+                            maxLines: null,
+                            onChanged: (value) {
+                              controller.text.value = value;
+                            },
+                            onTap: () {
+                              log('tap inside');
+                              // controller.setEditVisible(true);
+                              Get.put(DraggableController()).visible.value =
+                                  true;
+                            },
+                            onTapOutside: (event) {
+                              log('tap outside');
+                              Get.put(DraggableController()).visible.value =
+                                  false;
+                              FocusScope.of(context).requestFocus(FocusNode());
+                            },
+                          ),
+                        )),
                       ],
                     ),
                   ),
