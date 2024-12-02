@@ -45,6 +45,8 @@ class NewProjectView extends GetView {
   Widget exportButton(NewProjectController controller, BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
+        //
+        Get.put(DraggableController()).visible.value = false;
         // export image
         controller.exportImage();
       },
@@ -186,7 +188,7 @@ class NewProjectView extends GetView {
                             decoration:
                                 const InputDecoration(border: InputBorder.none),
                             textAlign: controller.textAlign.value,
-                            style: GoogleFonts.kanit(
+                            style: GoogleFonts.sriracha(
                               fontSize: controller.fontSize.value,
                               fontWeight: (controller.isBold.value)
                                   ? FontWeight.w500
