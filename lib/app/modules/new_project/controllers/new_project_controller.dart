@@ -37,6 +37,8 @@ class NewProjectController extends GetxController {
 
   RxBool editVisible = true.obs;
 
+  Rx<Size> canvasSize = Size.zero.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -46,7 +48,7 @@ class NewProjectController extends GetxController {
     height.value = double.parse(Get.parameters['height'] ?? '1200.00');
     ratio.value = Get.parameters['ratio'] ?? '1:1';
 
-    log('w=${width.value},h=${height.value}');
+    canvasSize.value = calculateCanvasSize(Get.width, Get.height);
 
     // set default text
     textController.text = text.value;

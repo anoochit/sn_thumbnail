@@ -14,7 +14,7 @@ import 'dragable_widget_view.dart';
 import 'genaibox_view.dart';
 import 'select_color_view.dart';
 
-class NewProjectView extends GetView {
+class NewProjectView extends GetView<NewProjectController> {
   const NewProjectView({super.key});
 
   hideDraggableBorder() {
@@ -23,31 +23,24 @@ class NewProjectView extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NewProjectController>(
-      init: NewProjectController(),
-      builder: (controller) {
-        hideDraggableBorder();
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('New project'),
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            centerTitle: true,
-            actions: [exportButton(controller, context)],
-            bottom: AppBar(
-              automaticallyImplyLeading: false,
-              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-              title: buildToolbar(context, controller),
-              centerTitle: true,
-            ),
-          ),
-          body: Stack(
-            children: [
-              buildCanvas(controller),
-            ],
-          ),
-          // floatingActionButton: exportButton(controller, context),
-        );
-      },
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('New project'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        centerTitle: true,
+        actions: [
+          exportButton(controller, context),
+        ],
+        bottom: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+          title: Obx(() => buildToolbar(context, controller)),
+          centerTitle: true,
+        ),
+      ),
+      body: Obx(() => buildCanvas(controller, context)),
+
+      // floatingActionButton: exportButton(controller, context),
     );
   }
 
@@ -147,88 +140,79 @@ class NewProjectView extends GetView {
     );
   }
 
-  Widget buildCanvas(NewProjectController controller) {
+  Widget buildCanvas(NewProjectController controller, BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: LayoutBuilder(builder: (context, constraints) {
-          final size = controller.calculateCanvasSize(
-            constraints.maxWidth,
-            constraints.maxHeight,
-          );
-
-          return Card(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(0.0)),
-            child: Container(
-              width: size.width,
-              height: size.height,
-              color: Colors.white,
-              child: GestureDetector(
-                onTap: () {
-                  controller.setEditVisible(false);
-                },
-                child: Screenshot(
-                  controller: controller.screenshotController,
-                  child: Container(
-                    width: size.width,
-                    height: size.height,
-                    color: controller.backgroundColor.value,
-                    child: Stack(
-                      children: [
-                        // backgound image
-                        (controller.backgroundImageData.value.lengthInBytes ==
-                                0)
-                            ? const SizedBox()
-                            : Positioned.fill(
-                                child: Image.memory(
-                                  controller.backgroundImageData.value,
-                                  fit: BoxFit.cover,
-                                ),
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0)),
+          child: Container(
+            width: controller.canvasSize.value.width,
+            height: controller.canvasSize.value.height,
+            color: Colors.white,
+            child: GestureDetector(
+              onTap: () {
+                controller.setEditVisible(false);
+              },
+              child: Screenshot(
+                controller: controller.screenshotController,
+                child: Container(
+                  width: controller.canvasSize.value.width,
+                  height: controller.canvasSize.value.height,
+                  color: controller.backgroundColor.value,
+                  child: Stack(
+                    children: [
+                      // backgound image
+                      (controller.backgroundImageData.value.lengthInBytes == 0)
+                          ? const SizedBox()
+                          : Positioned.fill(
+                              child: Image.memory(
+                                controller.backgroundImageData.value,
+                                fit: BoxFit.cover,
                               ),
-                        // text field
-                        DraggableWidgetView(
-                            // visible: controller.editVisible.value,
-                            child: Padding(
-                          padding: const EdgeInsets.all(36.0),
-                          child: TextFormField(
-                            controller: controller.textController,
-                            decoration:
-                                const InputDecoration(border: InputBorder.none),
-                            textAlign: controller.textAlign.value,
-                            style: GoogleFonts.sriracha(
-                              fontSize: controller.fontSize.value,
-                              fontWeight: (controller.isBold.value)
-                                  ? FontWeight.w500
-                                  : FontWeight.w400,
-                              color: controller.fontColor.value,
                             ),
-                            maxLines: null,
-                            onChanged: (value) {
-                              controller.text.value = value;
-                            },
-                            onTap: () {
-                              log('tap inside');
-                              // controller.setEditVisible(true);
-                              Get.put(DraggableController()).visible.value =
-                                  true;
-                            },
-                            onTapOutside: (event) {
-                              log('tap outside');
-                              Get.put(DraggableController()).visible.value =
-                                  false;
-                              FocusScope.of(context).requestFocus(FocusNode());
-                            },
+                      // text field
+                      DraggableWidgetView(
+                          // visible: controller.editVisible.value,
+                          child: Padding(
+                        padding: const EdgeInsets.all(36.0),
+                        child: TextFormField(
+                          controller: controller.textController,
+                          decoration:
+                              const InputDecoration(border: InputBorder.none),
+                          textAlign: controller.textAlign.value,
+                          style: GoogleFonts.sriracha(
+                            fontSize: controller.fontSize.value,
+                            fontWeight: (controller.isBold.value)
+                                ? FontWeight.w500
+                                : FontWeight.w400,
+                            color: controller.fontColor.value,
                           ),
-                        )),
-                      ],
-                    ),
+                          maxLines: null,
+                          onChanged: (value) {
+                            controller.text.value = value;
+                          },
+                          onTap: () {
+                            log('tap inside');
+                            // controller.setEditVisible(true);
+                            Get.put(DraggableController()).visible.value = true;
+                          },
+                          onTapOutside: (event) {
+                            log('tap outside');
+                            Get.put(DraggableController()).visible.value =
+                                false;
+                            FocusScope.of(context).requestFocus(FocusNode());
+                          },
+                        ),
+                      )),
+                    ],
                   ),
                 ),
               ),
             ),
-          );
-        }),
+          ),
+        ),
       ),
     );
   }
