@@ -18,3 +18,12 @@
 
 - Fix App layout
 - Change build workflow for Windows Desktop App
+
+## 1.0.5
+
+- Add background color
+
+## 1.0.6
+
+- Change toolbar position
+- Update canvas layout
