@@ -10,8 +10,6 @@ class DraggableController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    left.value = 10.0;
-    top.value = 0 + height.value;
   }
 
   void updatePosition(double deltaX, double deltaY) {

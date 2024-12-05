@@ -43,6 +43,7 @@ class NewProjectView extends GetView {
             ),
           ),
           body: ListView(
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: [
               Center(
