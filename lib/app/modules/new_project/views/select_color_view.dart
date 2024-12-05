@@ -10,12 +10,14 @@ class SelectedColorView extends GetView<SelectColorController> {
       required this.onChanged,
       required this.color,
       required this.width,
-      required this.height});
+      required this.height,
+      required this.title});
 
   final ValueChanged<Color> onChanged;
   final Color color;
   final double width;
   final double height;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class SelectedColorView extends GetView<SelectColorController> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Color picker'),
+        title: Text(title),
         content: SizedBox(
           width: (width * 2) * 6,
           child: Obx(() {

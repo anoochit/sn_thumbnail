@@ -25,7 +25,7 @@ class NewProjectController extends GetxController {
 
   TextEditingController textController = TextEditingController();
   RxString text = 'Example Text'.obs;
-  RxDouble fontSize = 40.0.obs;
+  RxDouble fontSize = 32.0.obs;
   RxBool isBold = false.obs;
   Rx<TextAlign> textAlign = TextAlign.left.obs;
   Rx<Color> fontColor = Colors.black.obs;
@@ -35,7 +35,7 @@ class NewProjectController extends GetxController {
 
   ScreenshotController screenshotController = ScreenshotController();
 
-  RxBool editVisible = false.obs;
+  RxBool editVisible = true.obs;
 
   @override
   void onInit() {

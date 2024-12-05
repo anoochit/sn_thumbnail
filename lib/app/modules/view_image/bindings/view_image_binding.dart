@@ -2,11 +2,13 @@ import 'package:get/get.dart';
 
 import '../controllers/view_image_controller.dart';
 
-class ViewImageBinding extends Bindings {
+class ViewImageBinding extends Binding {
   @override
-  void dependencies() {
-    Get.lazyPut<ViewImageController>(
-      () => ViewImageController(),
-    );
+  List<Bind> dependencies() {
+    return [
+      Bind.lazyPut<ViewImageController>(
+        () => ViewImageController(),
+      )
+    ];
   }
 }

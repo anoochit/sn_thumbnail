@@ -26,15 +26,19 @@ class NewProjectView extends GetView {
             title: const Text('New project'),
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             centerTitle: true,
+            // actions: [
+            //   exportButton(controller, context),
+            // ],
+            bottom: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+              title: buildToolbar(context, controller),
+              centerTitle: true,
+            ),
           ),
-          body: Stack(
-            children: [
-              // canvas
-              buildCanvas(controller),
-
-              // toolbar
-              buildToolbar(context, controller),
-            ],
+          body: Center(
+            child: // canvas
+                buildCanvas(controller),
           ),
           floatingActionButton: exportButton(controller, context),
         );
@@ -55,86 +59,86 @@ class NewProjectView extends GetView {
   }
 
   Widget buildToolbar(BuildContext context, NewProjectController controller) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                onPressed: () {
-                  // text increase
-                  controller.textIncrease();
-                },
-                icon: const Icon(Icons.text_increase),
-              ),
-              IconButton(
-                onPressed: () {
-                  // text decrease
-                  controller.textDecrease();
-                },
-                icon: const Icon(Icons.text_decrease),
-              ),
-              IconButton(
-                onPressed: () {
-                  // text bold
-                  controller.textToggleBold();
-                },
-                icon: const Icon(Icons.format_bold),
-              ),
-              SelectedColorView(
-                width: 24.0,
-                height: 24.0,
-                onChanged: (value) => controller.setFontColor(value),
-                color: controller.fontColor.value,
-              ),
-              SelectedColorView(
-                width: 24.0,
-                height: 24.0,
-                onChanged: (value) => controller.setBackgroundColor(value),
-                color: controller.backgroundColor.value,
-              ),
-              IconButton(
-                onPressed: () {
-                  // text left
-                  controller.textAlignLeft();
-                },
-                icon: const Icon(Icons.format_align_left),
-              ),
-              IconButton(
-                onPressed: () {
-                  // text center
-                  controller.textAlignCenter();
-                },
-                icon: const Icon(Icons.format_align_center),
-              ),
-              IconButton(
-                onPressed: () {
-                  // text right
-                  controller.textAlignRight();
-                },
-                icon: const Icon(Icons.format_align_right),
-              ),
-              IconButton(
-                onPressed: () {
-                  // background image
-                  controller.backgroundImage();
-                },
-                icon: const Icon(Icons.image),
-              ),
-              IconButton(
-                onPressed: () {
-                  // gen ai dialog
-                  buildGenAIDialog(context, controller);
-                },
-                icon: const Iconify(Ph.star_four_duotone),
-              ),
-            ],
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton(
+          onPressed: () {
+            // text increase
+            controller.textIncrease();
+          },
+          icon: const Icon(Icons.text_increase),
+        ),
+        IconButton(
+          onPressed: () {
+            // text decrease
+            controller.textDecrease();
+          },
+          icon: const Icon(Icons.text_decrease),
+        ),
+        IconButton(
+          onPressed: () {
+            // text bold
+            controller.textToggleBold();
+          },
+          icon: const Icon(Icons.format_bold),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: SelectedColorView(
+            title: 'Font Color',
+            width: 24.0,
+            height: 24.0,
+            onChanged: (value) => controller.setFontColor(value),
+            color: controller.fontColor.value,
           ),
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: SelectedColorView(
+            title: 'Backgound Color',
+            width: 24.0,
+            height: 24.0,
+            onChanged: (value) => controller.setBackgroundColor(value),
+            color: controller.backgroundColor.value,
+          ),
+        ),
+        IconButton(
+          onPressed: () {
+            // text left
+            controller.textAlignLeft();
+          },
+          icon: const Icon(Icons.format_align_left),
+        ),
+        IconButton(
+          onPressed: () {
+            // text center
+            controller.textAlignCenter();
+          },
+          icon: const Icon(Icons.format_align_center),
+        ),
+        IconButton(
+          onPressed: () {
+            // text right
+            controller.textAlignRight();
+          },
+          icon: const Icon(Icons.format_align_right),
+        ),
+        IconButton(
+          onPressed: () {
+            // background image
+            controller.backgroundImage();
+          },
+          icon: const Icon(Icons.image),
+        ),
+        IconButton(
+          onPressed: () {
+            // gen ai dialog
+            buildGenAIDialog(context, controller);
+          },
+          icon: const Iconify(Ph.star_four_duotone),
+        ),
+      ],
     );
   }
 
@@ -182,7 +186,7 @@ class NewProjectView extends GetView {
                         DraggableWidgetView(
                             // visible: controller.editVisible.value,
                             child: Padding(
-                          padding: const EdgeInsets.all(24.0),
+                          padding: const EdgeInsets.all(40.0),
                           child: TextFormField(
                             controller: controller.textController,
                             decoration:
