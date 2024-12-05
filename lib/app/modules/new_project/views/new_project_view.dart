@@ -16,11 +16,17 @@ import 'select_color_view.dart';
 
 class NewProjectView extends GetView {
   const NewProjectView({super.key});
+
+  hideDraggableBorder() {
+    Get.put(DraggableController()).visible.value = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<NewProjectController>(
       init: NewProjectController(),
       builder: (controller) {
+        hideDraggableBorder();
         return Scaffold(
           appBar: AppBar(
             title: const Text('New project'),
@@ -54,7 +60,7 @@ class NewProjectView extends GetView {
     return FloatingActionButton(
       onPressed: () {
         //
-        Get.put(DraggableController()).visible.value = false;
+        hideDraggableBorder();
         // export image
         controller.exportImage();
       },
@@ -156,7 +162,6 @@ class NewProjectView extends GetView {
             constraints.maxHeight,
           );
 
-          log('canvas size = ${size.width} x ${size.height}');
           return Card(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(0.0)),
