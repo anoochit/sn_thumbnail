@@ -7,8 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:sn_thumbnail/app/modules/new_project/controllers/dragable_contreoller.dart';
 
+import '../controllers/dragable_contreoller.dart';
 import '../controllers/new_project_controller.dart';
 import 'dragable_widget_view.dart';
 import 'genaibox_view.dart';
@@ -36,9 +36,13 @@ class NewProjectView extends GetView {
               centerTitle: true,
             ),
           ),
-          body: Center(
-            child: // canvas
-                buildCanvas(controller),
+          body: ListView(
+            children: [
+              Center(
+                child: // canvas
+                    buildCanvas(controller),
+              ),
+            ],
           ),
           floatingActionButton: exportButton(controller, context),
         );

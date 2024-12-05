@@ -9,6 +9,6 @@ showGetXSnackBar({required String title, required String message}) {
   Get.snackbar(
     title,
     message,
-    margin: EdgeInsets.only(left: (Get.width > 600) ? (Get.width - 360) : 0.0),
+    margin: EdgeInsets.only(left: (Get.width > 640) ? (Get.width - 360) : 0.0),
   );
 }
