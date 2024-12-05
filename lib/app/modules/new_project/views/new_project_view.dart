@@ -32,9 +32,7 @@ class NewProjectView extends GetView {
             title: const Text('New project'),
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             centerTitle: true,
-            // actions: [
-            //   exportButton(controller, context),
-            // ],
+            actions: [exportButton(controller, context)],
             bottom: AppBar(
               automaticallyImplyLeading: false,
               backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
@@ -42,31 +40,26 @@ class NewProjectView extends GetView {
               centerTitle: true,
             ),
           ),
-          body: ListView(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
+          body: Stack(
             children: [
-              Center(
-                child: // canvas
-                    buildCanvas(controller),
-              ),
+              buildCanvas(controller),
             ],
           ),
-          floatingActionButton: exportButton(controller, context),
+          // floatingActionButton: exportButton(controller, context),
         );
       },
     );
   }
 
   Widget exportButton(NewProjectController controller, BuildContext context) {
-    return FloatingActionButton(
+    return IconButton(
       onPressed: () {
         //
         hideDraggableBorder();
         // export image
         controller.exportImage();
       },
-      child: const Icon(Icons.download),
+      icon: const Icon(Icons.save_alt),
     );
   }
 
@@ -157,7 +150,7 @@ class NewProjectView extends GetView {
   Widget buildCanvas(NewProjectController controller) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(32.0),
+        padding: const EdgeInsets.all(12.0),
         child: LayoutBuilder(builder: (context, constraints) {
           final size = controller.calculateCanvasSize(
             constraints.maxWidth,
