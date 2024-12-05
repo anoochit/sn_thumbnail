@@ -7,6 +7,13 @@ class DraggableController extends GetxController {
   RxDouble top = 50.0.obs;
   RxBool visible = false.obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+    left.value = 10.0;
+    top.value = 0 + height.value;
+  }
+
   void updatePosition(double deltaX, double deltaY) {
     left.value += deltaX;
     top.value += deltaY;

@@ -43,6 +43,7 @@ class NewProjectView extends GetView {
             ),
           ),
           body: ListView(
+            shrinkWrap: true,
             children: [
               Center(
                 child: // canvas
@@ -195,7 +196,7 @@ class NewProjectView extends GetView {
                         DraggableWidgetView(
                             // visible: controller.editVisible.value,
                             child: Padding(
-                          padding: const EdgeInsets.all(40.0),
+                          padding: const EdgeInsets.all(36.0),
                           child: TextFormField(
                             controller: controller.textController,
                             decoration:

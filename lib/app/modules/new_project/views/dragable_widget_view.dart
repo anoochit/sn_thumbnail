@@ -60,7 +60,7 @@ class DraggableWidgetView extends GetView<DraggableController> {
                             SizedBox(
                               width: controller.width.value,
                               height: controller.height.value,
-                              child: child,
+                              child: Center(child: child),
                             ),
 
                             // top left
@@ -149,6 +149,7 @@ class DraggableIconTopLeft extends StatelessWidget {
       child: const Iconify(
         RadixIcons.corner_top_left,
         color: Colors.greenAccent,
+        size: 36.0,
       ),
     );
   }
@@ -168,6 +169,7 @@ class DraggableIconTopRight extends StatelessWidget {
         child: Iconify(
           RadixIcons.corner_top_right,
           color: Colors.greenAccent,
+          size: 36.0,
         ),
       ),
     );
@@ -188,6 +190,7 @@ class DraggableIconBottomLeft extends StatelessWidget {
         child: Iconify(
           RadixIcons.corner_bottom_left,
           color: Colors.greenAccent,
+          size: 36.0,
         ),
       ),
     );
@@ -208,6 +211,7 @@ class DraggableIconBottomRight extends StatelessWidget {
         child: Iconify(
           RadixIcons.corner_bottom_right,
           color: Colors.greenAccent,
+          size: 36.0,
         ),
       ),
     );
