@@ -59,7 +59,7 @@ class NewProjectView extends GetView {
         // export image
         controller.exportImage();
       },
-      icon: const Icon(Icons.save_alt),
+      icon: const Icon(Icons.download),
     );
   }
 
