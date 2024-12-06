@@ -37,7 +37,8 @@ class GenAIBox extends GetView<GenAIBoxController> {
             () => ChipOptions(
                 currentIndex: controller.genAiType.value.index,
                 children: List.generate(PromptType.values.length, (index) {
-                  return Text(PromptType.values[index].name);
+                  return Text(PromptType.values[index].name
+                      .capitalizeAllWordsFirstLetter());
                 }),
                 onSelect: (index) {
                   controller.genAiType.value = PromptType.values[index];

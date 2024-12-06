@@ -109,7 +109,8 @@ class GenAIBoxController extends GetxController {
             showGetXSnackBar(title: 'Saved', message: 'Save to gallery!');
           });
         } else {
-          showGetXSnackBar(title: 'Saved', message: 'Save to $fileName');
+          showGetXSnackBar(
+              title: 'Saved', message: 'Save to document directory!');
         }
 
         listGenImage.add(GenImage(image: fileName));
