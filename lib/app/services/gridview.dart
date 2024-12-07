@@ -5,7 +5,7 @@ class GridUtils {
         : (width <= 768)
             ? 3
             : (width <= 1024)
-                ? 3
+                ? 4
                 : (width <= 1280)
                     ? 5
                     : 5;
