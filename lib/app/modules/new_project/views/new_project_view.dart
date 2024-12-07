@@ -181,7 +181,7 @@ class NewProjectView extends GetView<NewProjectController> {
                       decoration:
                           const InputDecoration(border: InputBorder.none),
                       textAlign: controller.textAlign.value,
-                      style: GoogleFonts.kanit(
+                      style: GoogleFonts.sriracha(
                         fontSize: controller.fontSize.value,
                         fontWeight: (controller.isBold.value)
                             ? FontWeight.w500
