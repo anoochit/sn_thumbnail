@@ -1,5 +1,5 @@
 name: sn_thumbnail
-version: 1.0.6+1
+version: 1.0.6+2
 publish_to: none
 description: A social media thumbnail post.
 environment:
