@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - "v*"
+env:
+  PROPERTIES_PATH: "./android/key.properties"
+
 jobs:
   build-linux:
     runs-on: ubuntu-latest
@@ -75,3 +78,69 @@ jobs:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
         with:
           files: build/macos/Build/Products/Release/sn_thumbnail-${{github.ref_name}}-macos.zip
+
+  # build-ios:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: "stable"
+  #     - run: flutter pub get    
+  #     - run: |
+  #         flutter build ios --release --no-codesign
+  #         cd build/ios/iphoneos
+  #         mkdir Payload
+  #         cd Payload
+  #         ln -s ../Runner.app
+  #         cd ..
+  #         zip -r sn_thumbnail-${{github.ref_name}}-ios.ipa Payload
+
+  #     - name: iOS Releases
+  #       uses: softprops/action-gh-release@v1
+  #       if: startsWith(github.ref, 'refs/tags/v')
+  #       env:
+  #         GITHUB_TOKEN: ${{secrets.TOKEN}}
+  #       with:
+  #         files: build/ios/iphoneos/sn_thumbnail-${{github.ref_name}}-ios.ipa
+
+  build-android:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "zulu"
+          java-version: "11"
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      
+      # Creating the key.properties file
+      - run: |
+          echo keyPassword=\${{ secrets.KEY_PASSWORD }} > ${{env.PROPERTIES_PATH}}
+          echo storePassword=\${{ secrets.STORE_PASSWORD }} >> ${{env.PROPERTIES_PATH}}
+          echo keyAlias=\${{ secrets.KEY_ALIAS }} >> ${{env.PROPERTIES_PATH}}
+      
+      # Decoding base64 key into a file
+      - run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > android/app/key.jks
+
+      # # Get dependencies and make assigned appbundle
+      - run: |
+          flutter pub get
+          flutter build appbundle
+
+      # build apk
+      - run: flutter build apk --split-per-abi
+
+      - name: Android Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GITHUB_TOKEN: ${{secrets.TOKEN}}
+        with:
+          files: |
+            build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+            build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+            build/app/outputs/flutter-apk/app-x86_64-release.apk
+            build/app/outputs/bundle/release/app-release.aab
