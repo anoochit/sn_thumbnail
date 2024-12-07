@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:sn_thumbnail/app/modules/new_project/controllers/new_project_controller.dart';
 
 import 'package:sn_thumbnail/app/routes/app_pages.dart';
 
@@ -18,49 +21,52 @@ class TemplateBodyView extends GetView {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
       ),
-      body: GridView.builder(
-        itemCount: listCanvas.length,
-        padding: const EdgeInsets.all(8.0),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: GridUtils.responsiveGridColumn(context.width)),
-        itemBuilder: (context, index) {
-          final item = listCanvas[index];
-          final title = item.title;
-          final width = item.width;
-          final height = item.height;
-          final ratio = item.ratio;
-          final icon = item.icon;
-          return Card(
-            elevation: 0.0,
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: InkWell(
-              onTap: () {
-                //
-                Get.toNamed(Routes.NEW_PROJECT, parameters: {
-                  'width': '$width',
-                  'height': '$height',
-                  'ratio': ratio
-                });
-              },
-              child: GridTile(
-                footer: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(title),
+      body: LayoutBuilder(builder: (context, constraints) {
+        return GridView.builder(
+          itemCount: listCanvas.length,
+          padding: const EdgeInsets.all(8.0),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: GridUtils.responsiveGridColumn(context.width)),
+          itemBuilder: (context, index) {
+            final item = listCanvas[index];
+            final title = item.title;
+            final width = item.width;
+            final height = item.height;
+            final ratio = item.ratio;
+            final icon = item.icon;
+            return Card(
+              elevation: 0.0,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.NEW_PROJECT, parameters: {
+                    'scWidth': '${constraints.maxWidth}',
+                    'scHeight': '${constraints.maxHeight}',
+                    'width': '$width',
+                    'height': '$height',
+                    'ratio': ratio
+                  });
+                },
+                child: GridTile(
+                  footer: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(title),
+                    ),
                   ),
-                ),
-                child: Center(
-                  child: Iconify(
-                    icon,
-                    size: 64.0,
-                    color: Theme.of(context).colorScheme.primary,
+                  child: Center(
+                    child: Iconify(
+                      icon,
+                      size: 64.0,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
-        },
-      ),
+            );
+          },
+        );
+      }),
     );
   }
 }

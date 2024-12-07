@@ -25,7 +25,7 @@ class NewProjectController extends GetxController {
 
   TextEditingController textController = TextEditingController();
   RxString text = 'Example Text'.obs;
-  RxDouble fontSize = 32.0.obs;
+  RxDouble fontSize = 24.0.obs;
   RxBool isBold = false.obs;
   Rx<TextAlign> textAlign = TextAlign.left.obs;
   Rx<Color> fontColor = Colors.black.obs;
@@ -37,6 +37,8 @@ class NewProjectController extends GetxController {
 
   RxBool editVisible = true.obs;
 
+  Rx<Size> canvasSize = Size.zero.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -44,7 +46,13 @@ class NewProjectController extends GetxController {
     // set template size
     width.value = double.parse(Get.parameters['width'] ?? '1200.00');
     height.value = double.parse(Get.parameters['height'] ?? '1200.00');
+
+    double scWidth = double.parse(Get.parameters['scWidth']!);
+    double scHeight = double.parse(Get.parameters['scHeight']!);
+
     ratio.value = Get.parameters['ratio'] ?? '1:1';
+
+    canvasSize.value = calculateCanvasSize(scWidth, scHeight);
 
     // set default text
     textController.text = text.value;

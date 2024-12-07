@@ -21,46 +21,6 @@ class NewProjectView extends GetView<NewProjectController> {
     Get.put(DraggableController()).visible.value = false;
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('New project'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        centerTitle: true,
-        actions: [
-          exportButton(controller, context),
-        ],
-        bottom: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-          title: Obx(() => buildToolbar(context, controller)),
-          centerTitle: true,
-        ),
-      ),
-      body: GetBuilder<NewProjectController>(
-        builder: (controller) {
-          hideDraggableBorder();
-          return buildCanvas(controller, context);
-        },
-      ),
-
-      // floatingActionButton: exportButton(controller, context),
-    );
-  }
-
-  Widget exportButton(NewProjectController controller, BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        //
-        hideDraggableBorder();
-        // export image
-        controller.exportImage();
-      },
-      icon: const Icon(Icons.download),
-    );
-  }
-
   Widget buildToolbar(BuildContext context, NewProjectController controller) {
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -145,92 +105,6 @@ class NewProjectView extends GetView<NewProjectController> {
     );
   }
 
-  Widget buildCanvas(NewProjectController controller, BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: LayoutBuilder(builder: (context, constraints) {
-          // calculate canvas size
-          final canvasSize = controller.calculateCanvasSize(
-            constraints.maxWidth,
-            constraints.maxHeight,
-          );
-          return Card(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(0.0)),
-            child: Container(
-              width: canvasSize.width,
-              height: canvasSize.height,
-              color: Colors.white,
-              child: GestureDetector(
-                onTap: () {
-                  controller.setEditVisible(false);
-                },
-                child: Screenshot(
-                  controller: controller.screenshotController,
-                  child: Container(
-                    width: canvasSize.width,
-                    height: canvasSize.height,
-                    color: controller.backgroundColor.value,
-                    child: Stack(
-                      children: [
-                        // backgound image
-                        (controller.backgroundImageData.value.lengthInBytes ==
-                                0)
-                            ? const SizedBox()
-                            : Positioned.fill(
-                                child: Image.memory(
-                                  controller.backgroundImageData.value,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                        // text field
-                        DraggableWidgetView(
-                            // visible: controller.editVisible.value,
-                            child: Padding(
-                          padding: const EdgeInsets.all(36.0),
-                          child: TextFormField(
-                            controller: controller.textController,
-                            decoration:
-                                const InputDecoration(border: InputBorder.none),
-                            textAlign: controller.textAlign.value,
-                            style: GoogleFonts.sriracha(
-                              fontSize: controller.fontSize.value,
-                              fontWeight: (controller.isBold.value)
-                                  ? FontWeight.w500
-                                  : FontWeight.w400,
-                              color: controller.fontColor.value,
-                            ),
-                            maxLines: null,
-                            onChanged: (value) {
-                              controller.text.value = value;
-                            },
-                            onTap: () {
-                              log('tap inside');
-                              // controller.setEditVisible(true);
-                              Get.put(DraggableController()).visible.value =
-                                  true;
-                            },
-                            onTapOutside: (event) {
-                              log('tap outside');
-                              Get.put(DraggableController()).visible.value =
-                                  false;
-                              FocusScope.of(context).requestFocus(FocusNode());
-                            },
-                          ),
-                        )),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          );
-        }),
-      ),
-    );
-  }
-
   void buildGenAIDialog(BuildContext context, NewProjectController controller) {
     showDialog(
       barrierDismissible: false,
@@ -256,6 +130,112 @@ class NewProjectView extends GetView<NewProjectController> {
           ),
         );
       },
+    );
+  }
+
+  Widget exportButton(NewProjectController controller, BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        // hide selected border
+        hideDraggableBorder();
+        // export image
+        controller.exportImage();
+      },
+      icon: const Icon(Icons.download),
+    );
+  }
+
+  Widget buildCanvas(NewProjectController controller, BuildContext context) {
+    return Center(
+      child: Screenshot(
+        controller: controller.screenshotController,
+        child: Container(
+          width: controller.canvasSize.value.width,
+          height: controller.canvasSize.value.height,
+          color: Colors.white,
+          child: GestureDetector(
+            onTap: () {
+              controller.setEditVisible(false);
+            },
+            child: Container(
+              width: controller.canvasSize.value.width,
+              height: controller.canvasSize.value.height,
+              color: controller.backgroundColor.value,
+              child: Stack(
+                children: [
+                  // backgound image
+                  (controller.backgroundImageData.value.lengthInBytes == 0)
+                      ? const SizedBox()
+                      : Positioned.fill(
+                          child: Image.memory(
+                            controller.backgroundImageData.value,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                  // text field
+                  DraggableWidgetView(
+                      child: Padding(
+                    padding: const EdgeInsets.all(36.0),
+                    child: TextFormField(
+                      controller: controller.textController,
+                      decoration:
+                          const InputDecoration(border: InputBorder.none),
+                      textAlign: controller.textAlign.value,
+                      style: GoogleFonts.kanit(
+                        fontSize: controller.fontSize.value,
+                        fontWeight: (controller.isBold.value)
+                            ? FontWeight.w500
+                            : FontWeight.w400,
+                        color: controller.fontColor.value,
+                      ),
+                      maxLines: null,
+                      onChanged: (value) {
+                        controller.text.value = value;
+                      },
+                      onTap: () {
+                        log('tap inside');
+                        // controller.setEditVisible(true);
+                        Get.put(DraggableController()).visible.value = true;
+                      },
+                      onTapOutside: (event) {
+                        log('tap outside');
+                        Get.put(DraggableController()).visible.value = false;
+                        FocusScope.of(context).requestFocus(FocusNode());
+                      },
+                    ),
+                  )),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('New project'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        centerTitle: true,
+        actions: [
+          exportButton(controller, context),
+        ],
+        bottom: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+          title: Obx(() => buildToolbar(context, controller)),
+          centerTitle: true,
+        ),
+      ),
+      body: GetBuilder<NewProjectController>(
+        builder: (controller) {
+          hideDraggableBorder();
+          return buildCanvas(controller, context);
+        },
+      ),
     );
   }
 }
