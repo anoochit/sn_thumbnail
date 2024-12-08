@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:sn_thumbnail/app/modules/new_project/controllers/new_project_controller.dart';
 
 import 'package:sn_thumbnail/app/routes/app_pages.dart';
 
