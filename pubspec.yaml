@@ -3,7 +3,7 @@ version: 1.0.7+1
 publish_to: none
 description: A social media thumbnail post.
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.6.0
 
 dependencies:
   bitsdojo_window: ^0.1.6
