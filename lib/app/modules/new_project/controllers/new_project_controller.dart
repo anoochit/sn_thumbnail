@@ -25,7 +25,7 @@ class NewProjectController extends GetxController {
 
   TextEditingController textController = TextEditingController();
   RxString text = 'Example Text'.obs;
-  RxDouble fontSize = 24.0.obs;
+  RxDouble fontSize = 32.0.obs;
   RxBool isBold = false.obs;
   Rx<TextAlign> textAlign = TextAlign.left.obs;
   Rx<Color> fontColor = Colors.black.obs;
@@ -47,12 +47,12 @@ class NewProjectController extends GetxController {
     width.value = double.parse(Get.parameters['width'] ?? '1200.00');
     height.value = double.parse(Get.parameters['height'] ?? '1200.00');
 
-    double scWidth = double.parse(Get.parameters['scWidth']!);
-    double scHeight = double.parse(Get.parameters['scHeight']!);
+    // double scWidth = double.parse(Get.parameters['scWidth']!);
+    // double scHeight = double.parse(Get.parameters['scHeight']!);
 
     ratio.value = Get.parameters['ratio'] ?? '1:1';
 
-    canvasSize.value = calculateCanvasSize(scWidth, scHeight);
+    // canvasSize.value = calculateCanvasSize(scWidth, scHeight);
 
     // set default text
     textController.text = text.value;
@@ -74,6 +74,8 @@ class NewProjectController extends GetxController {
 
     w = scheight * (widthRatio / heightRatio);
     h = scwidth / (widthRatio / heightRatio);
+
+    canvasSize.value = Size(w, h);
 
     return Size((w), (h));
   }

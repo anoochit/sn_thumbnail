@@ -27,3 +27,8 @@
 
 - Change toolbar position
 - Update canvas layout
+
+## 1.0.7
+
+- Update canvas layout
+- Fix export ratio
