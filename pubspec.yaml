@@ -48,5 +48,5 @@ flutter:
 msix_config:
   display_name: SNThumbnail
   logo_path: assets\icons\launcher.png
-  msix_version: 1.0.5.0
+  msix_version: 1.0.8.0
   install_certificate: false
