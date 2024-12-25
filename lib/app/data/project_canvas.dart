@@ -68,4 +68,11 @@ final listCanvas = [
     ratio: "73:31",
     icon: FaSolid.book,
   ),
+  ProjectCanvas(
+    title: 'OG Image',
+    width: 1200.00,
+    height: 630.00,
+    ratio: "1.91:1",
+    icon: FaSolid.globe,
+  ),
 ];
