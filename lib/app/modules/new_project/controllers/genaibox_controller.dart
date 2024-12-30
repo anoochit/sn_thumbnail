@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -49,6 +50,7 @@ class GenAIBoxController extends GetxController {
 
       if (result.text != null) {
         final text = result.text!;
+        log('text: $text');
         if (isJsonResponse(text: text)) {
           final json = cleanJsonResponse(text: text);
           final genTitle = genTitleFromJson(json);

@@ -14,14 +14,15 @@ class GeminiService {
       {required String prompt, required PromptType type}) async {
     String generatePrompt = prompt;
 
+    // model: 'gemini-1.5-pro-latest',
     final model = GenerativeModel(
-      model: 'gemini-1.5-pro-latest',
+      model: 'gemini-2.0-flash-exp',
       apiKey: _apiKey,
     );
 
     if (type == PromptType.title) {
       generatePrompt =
-          'You are Content Marketer. Create a 5 SEO title and 10 hash tags from this content "$prompt". Show as JSON using this format [{"title" : "TITLE","tags" : "TAG"}]';
+          'You are Content Marketer. Create a 5 SEO title with slug and 10 hash tags from this content "$prompt". Show as JSON using this format [{"title" : "TITLE", "slug", : "SLUG", "tags" : "TAG"}]';
     }
 
     return await model.generateContent([Content.text(generatePrompt)]);

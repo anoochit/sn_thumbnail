@@ -122,17 +122,27 @@ class GenAIBox extends GetView<GenAIBoxController> {
                       final item = controller.listGenTitle[index];
                       final title = item.title;
                       final tags = item.tags;
+                      final slug = item.slug!.replaceAll('-', '_');
                       return Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 0.0,
                         child: ListTile(
                           leading: const Icon(Icons.text_fields),
+                          isThreeLine: true,
                           title: Text('$title'),
-                          subtitle: Text('$tags'),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // slug
+                              Text(slug),
+                              // tags
+                              Text('$tags'),
+                            ],
+                          ),
                           trailing: IconButton(
                             onPressed: () {
                               // copy
-                              FlutterClipboard.copy('$title $tags').then(
+                              FlutterClipboard.copy('$title $slug $tags').then(
                                 (value) => showGetXSnackBar(
                                   title: 'Info',
                                   message: 'Copied',
