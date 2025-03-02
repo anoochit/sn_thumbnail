@@ -22,86 +22,90 @@ class NewProjectView extends GetView<NewProjectController> {
   }
 
   Widget buildToolbar(BuildContext context, NewProjectController controller) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        IconButton(
-          onPressed: () {
-            // text increase
-            controller.textIncrease();
-          },
-          icon: const Icon(Icons.text_increase),
-        ),
-        IconButton(
-          onPressed: () {
-            // text decrease
-            controller.textDecrease();
-          },
-          icon: const Icon(Icons.text_decrease),
-        ),
-        IconButton(
-          onPressed: () {
-            // text bold
-            controller.textToggleBold();
-          },
-          icon: const Icon(Icons.format_bold),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: SelectedColorView(
-            title: 'Font Color',
-            width: 24.0,
-            height: 24.0,
-            onChanged: (value) => controller.setFontColor(value),
-            color: controller.fontColor.value,
+    return Container(
+      color: Theme.of(context).colorScheme.onInverseSurface,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+            onPressed: () {
+              // text increase
+              controller.textIncrease();
+            },
+            icon: const Icon(Icons.text_increase),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: SelectedColorView(
-            title: 'Backgound Color',
-            width: 24.0,
-            height: 24.0,
-            onChanged: (value) => controller.setBackgroundColor(value),
-            color: controller.backgroundColor.value,
+          IconButton(
+            onPressed: () {
+              // text decrease
+              controller.textDecrease();
+            },
+            icon: const Icon(Icons.text_decrease),
           ),
-        ),
-        IconButton(
-          onPressed: () {
-            // text left
-            controller.textAlignLeft();
-          },
-          icon: const Icon(Icons.format_align_left),
-        ),
-        IconButton(
-          onPressed: () {
-            // text center
-            controller.textAlignCenter();
-          },
-          icon: const Icon(Icons.format_align_center),
-        ),
-        IconButton(
-          onPressed: () {
-            // text right
-            controller.textAlignRight();
-          },
-          icon: const Icon(Icons.format_align_right),
-        ),
-        IconButton(
-          onPressed: () {
-            // background image
-            controller.backgroundImage();
-          },
-          icon: const Icon(Icons.image),
-        ),
-        IconButton(
-          onPressed: () {
-            // gen ai dialog
-            buildGenAIDialog(context, controller);
-          },
-          icon: const Iconify(Ph.star_four_duotone),
-        ),
-      ],
+          IconButton(
+            onPressed: () {
+              // text bold
+              controller.textToggleBold();
+            },
+            icon: const Icon(Icons.format_bold),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: SelectedColorView(
+              title: 'Font Color',
+              width: 24.0,
+              height: 24.0,
+              onChanged: (value) => controller.setFontColor(value),
+              color: controller.fontColor.value,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: SelectedColorView(
+              title: 'Backgound Color',
+              width: 24.0,
+              height: 24.0,
+              onChanged: (value) => controller.setBackgroundColor(value),
+              color: controller.backgroundColor.value,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              // text left
+              controller.textAlignLeft();
+            },
+            icon: const Icon(Icons.format_align_left),
+          ),
+          IconButton(
+            onPressed: () {
+              // text center
+              controller.textAlignCenter();
+            },
+            icon: const Icon(Icons.format_align_center),
+          ),
+          IconButton(
+            onPressed: () {
+              // text right
+              controller.textAlignRight();
+            },
+            icon: const Icon(Icons.format_align_right),
+          ),
+          IconButton(
+            onPressed: () {
+              // background image
+              controller.backgroundImage();
+            },
+            icon: const Icon(Icons.image),
+          ),
+          IconButton(
+            onPressed: () {
+              // gen ai dialog
+              buildGenAIDialog(context, controller);
+            },
+            icon: const Iconify(Ph.star_four_duotone),
+          ),
+        ],
+      ),
     );
   }
 
@@ -145,13 +149,22 @@ class NewProjectView extends GetView<NewProjectController> {
     );
   }
 
+  exportImage(NewProjectController controller, BuildContext context) {
+    // hide selected border
+    hideDraggableBorder();
+    // export image
+    controller.exportImage();
+  }
+
   Widget buildCanvas(NewProjectController controller, BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32.0),
         child: LayoutBuilder(builder: (context, constraints) {
-          controller.calculateCanvasSize(
-              constraints.maxWidth, constraints.maxHeight);
+          // controller.calculateCanvasSize(
+          //   constraints.maxWidth,
+          //   constraints.maxHeight,
+          // );
 
           return Screenshot(
             controller: controller.screenshotController,
@@ -229,15 +242,15 @@ class NewProjectView extends GetView<NewProjectController> {
         title: const Text('New project'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
-        actions: [
-          exportButton(controller, context),
-        ],
-        bottom: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-          title: Obx(() => buildToolbar(context, controller)),
-          centerTitle: true,
-        ),
+        // actions: [
+        //   exportButton(controller, context),
+        // ],
+        // bottom: AppBar(
+        //   automaticallyImplyLeading: false,
+        //   backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        //   title: Obx(() => buildToolbar(context, controller)),
+        //   centerTitle: true,
+        // ),
       ),
       body: GetBuilder<NewProjectController>(
         builder: (controller) {
@@ -245,6 +258,13 @@ class NewProjectView extends GetView<NewProjectController> {
           return buildCanvas(controller, context);
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          exportImage(controller, context);
+        },
+        child: Icon(Icons.download),
+      ),
+      bottomNavigationBar: Obx(() => buildToolbar(context, controller)),
     );
   }
 }

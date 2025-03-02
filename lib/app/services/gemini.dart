@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class GeminiService {
@@ -23,6 +25,8 @@ class GeminiService {
       generatePrompt =
           'You are Content Marketer. Create a 5 SEO title, slug and 10 hash tags (separate each word by space) from this content "$prompt". Show as JSON using this format [{"title" : "TITLE", "slug", : "SLUG", "tags" : "#TAG"}]';
     }
+
+    log('generatePrompt: $generatePrompt');
 
     return await model.generateContent([Content.text(generatePrompt)]);
   }

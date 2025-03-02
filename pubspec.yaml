@@ -13,12 +13,12 @@ dependencies:
     sdk: flutter
   flutter_native_splash: ^2.4.3
   gap: ^3.0.1
-  get: 5.0.0-release-candidate-9.2.1
+  get: ^5.0.0-release-candidate-9.3.2
   google_fonts: ^6.2.1
   google_generative_ai: ^0.4.6
   http: ^1.2.2
   iconify_flutter: ^0.0.7
-  image_gallery_saver_plus: ^3.0.5
+  image_gallery_saver_plus: 4.0.0-0.alpha
   image_picker: ^1.1.2
   image_scaler: ^0.0.2
   package_info_plus: ^8.0.2
