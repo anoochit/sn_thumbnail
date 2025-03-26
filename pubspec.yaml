@@ -18,7 +18,7 @@ dependencies:
   google_generative_ai: ^0.4.6
   http: ^1.2.2
   iconify_flutter: ^0.0.7
-  image_gallery_saver_plus: 4.0.0-0.alpha
+  image_gallery_saver_plus: ^4.0.1
   image_picker: ^1.1.2
   image_scaler: ^0.0.2
   package_info_plus: ^8.0.2

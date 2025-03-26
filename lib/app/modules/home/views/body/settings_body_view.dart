@@ -50,6 +50,7 @@ class SettingsBodyView extends GetView {
                         decoration: InputDecoration(
                           hintText: 'Edit $title',
                         ),
+                        obscureText: true,
                       ),
                       actions: [
                         TextButton(
