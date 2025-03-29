@@ -15,6 +15,7 @@ class StabilityService {
   }
 
   // generate text to image
+  // TODO : call cloud functions
   Future<Uint8List> textToImage(
       {required String prompt,
       String ratio = "9:16",
