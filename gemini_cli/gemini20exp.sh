@@ -12,7 +12,7 @@ cat << EOF > request.json
         "role": "user",
         "parts": [
           {
-            "text": "a catoon Disney style of baby hippo running on a brunch of tree."
+            "text": "Hi, can you create a 3d rendered image of a pig  with wings and a top hat flying over a happy futuristic scifi city with lots of greenery?"
           }
         ]
       },

@@ -16,7 +16,7 @@ void main() async {
       temperature: 1,
       topK: 40,
       topP: 0.95,
-      responseMimeType: "application/json",
+      responseMimeType: "text/plain",
     ),
   );
 

@@ -1,0 +1,16 @@
+{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Hi, can you create a 3d rendered image of a pig  with wings and a top hat flying over a happy futuristic scifi city with lots of greenery?"
+          }
+        ]
+      },
+    ],
+    "generationConfig": {
+      "responseModalities": ["image","text"],
+      "responseMimeType": "text/plain"
+    }
+}
