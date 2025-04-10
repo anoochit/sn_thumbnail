@@ -39,6 +39,8 @@ class NewProjectController extends GetxController {
 
   Rx<Size> canvasSize = Size.zero.obs;
 
+  Rx<String> template = ''.obs;
+
   @override
   void onInit() {
     super.onInit();

@@ -44,18 +44,21 @@ class TemplateBodyView extends GetView {
                     'ratio': ratio
                   });
                 },
-                child: GridTile(
-                  footer: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(title),
+                child: Hero(
+                  tag: 'template-$index',
+                  child: GridTile(
+                    footer: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(title),
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Iconify(
-                      icon,
-                      size: 64.0,
-                      color: Theme.of(context).colorScheme.primary,
+                    child: Center(
+                      child: Iconify(
+                        icon,
+                        size: 64.0,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                   ),
                 ),

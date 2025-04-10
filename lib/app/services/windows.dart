@@ -13,7 +13,7 @@ initWindows() {
       appWindow.minSize = initialSize;
       appWindow.alignment = Alignment.topRight;
       appWindow.show();
-      appWindow.maximizeOrRestore();
+      appWindow.maximize();
     });
   }
 }

@@ -23,7 +23,7 @@ class NewProjectView extends GetView<NewProjectController> {
 
   Widget buildToolbar(BuildContext context, NewProjectController controller) {
     return Container(
-      color: Theme.of(context).colorScheme.onInverseSurface,
+      // color: Theme.of(context).colorScheme.onInverseSurface,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -239,23 +239,19 @@ class NewProjectView extends GetView<NewProjectController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New project'),
+        title: SizedBox(
+          width: context.width,
+          child: buildToolbar(context, controller),
+        ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
-        // actions: [
-        //   exportButton(controller, context),
-        // ],
-        // bottom: AppBar(
-        //   automaticallyImplyLeading: false,
-        //   backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-        //   title: Obx(() => buildToolbar(context, controller)),
-        //   centerTitle: true,
-        // ),
       ),
       body: GetBuilder<NewProjectController>(
         builder: (controller) {
           hideDraggableBorder();
-          return buildCanvas(controller, context);
+          return Hero(
+              tag: controller.template.value,
+              child: buildCanvas(controller, context));
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -264,7 +260,7 @@ class NewProjectView extends GetView<NewProjectController> {
         },
         child: Icon(Icons.download),
       ),
-      bottomNavigationBar: Obx(() => buildToolbar(context, controller)),
+      // bottomNavigationBar: Obx(() => buildToolbar(context, controller)),
     );
   }
 }
