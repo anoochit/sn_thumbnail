@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:sn_thumbnail/app/data/project_canvas.dart';
 
 import 'package:sn_thumbnail/app/routes/app_pages.dart';
-
-import '../../../../data/project_canvas.dart';
-import '../../../../services/gridview.dart';
+import 'package:sn_thumbnail/app/services/gridview.dart';
 
 class TemplateBodyView extends GetView {
   const TemplateBodyView({super.key});
@@ -44,16 +43,16 @@ class TemplateBodyView extends GetView {
                     'ratio': ratio
                   });
                 },
-                child: Hero(
-                  tag: 'template-$index',
-                  child: GridTile(
-                    footer: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Text(title),
-                      ),
+                child: GridTile(
+                  footer: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(title),
                     ),
-                    child: Center(
+                  ),
+                  child: Center(
+                    child: Hero(
+                      tag: 'template-$index',
                       child: Iconify(
                         icon,
                         size: 64.0,

@@ -29,7 +29,8 @@ class GalleryBodyView extends GetView<HomeController> {
                   crossAxisCount: GridUtils.responsiveGridColumn(context.width),
                 ),
                 itemBuilder: (context, index) {
-                  final filePath = controller.listGallery[index];
+                  final filePath = controller
+                      .listGallery[(controller.listGallery.length - 1) - index];
 
                   if (filePath.contains('ig')) {
                     return Card(

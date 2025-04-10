@@ -25,7 +25,7 @@ Future<void> main() async {
       title: "Social Network Thumbnail",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       theme: ThemeData(
         brightness: Brightness.light,
         colorSchemeSeed: Colors.deepPurple,

@@ -29,7 +29,8 @@ class LibraryBodyView extends GetView<HomeController> {
                   crossAxisCount: GridUtils.responsiveGridColumn(context.width),
                 ),
                 itemBuilder: (context, index) {
-                  final filePath = controller.listLibrary[index];
+                  final filePath = controller
+                      .listLibrary[(controller.listLibrary.length - 1) - index];
 
                   return Card(
                     elevation: 0.0,
