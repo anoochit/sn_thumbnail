@@ -19,19 +19,18 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.NEW_PROJECT,
       page: () => const NewProjectView(),
       binding: NewProjectBinding(),
-      transition: Transition.cupertino,
+      fullscreenDialog: true,
     ),
     GetPage(
       name: _Paths.VIEW_IMAGE,
       page: () => const ViewImageView(),
       binding: ViewImageBinding(),
-      transition: Transition.cupertino,
+      fullscreenDialog: true,
     ),
   ];
 }

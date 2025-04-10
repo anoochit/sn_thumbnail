@@ -12,10 +12,10 @@ class GeminiService {
   }
 
   // generate
+  // TODO : call cloud functions
   Future<GenerateContentResponse> generate(
       {required String prompt, required PromptType type}) async {
     String generatePrompt = prompt;
-    // model: 'gemini-2.0-flash-exp',
     final model = GenerativeModel(
       model: 'gemini-2.0-flash',
       apiKey: _apiKey,

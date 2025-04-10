@@ -12,20 +12,25 @@ class ViewImageView extends GetView<ViewImageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('View'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () => controller.saveToGallery(controller.path.value),
-              icon: const Icon(Icons.download))
-        ],
-      ),
+          // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          // centerTitle: true,
+          ),
       body: Center(
-        child: Obx(() => Image.file(
-              File(controller.path.value),
-              filterQuality: FilterQuality.high,
-            )),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Hero(
+              tag: controller.path.value,
+              child: Obx(
+                () => Image.file(
+                  File(controller.path.value),
+                  filterQuality: FilterQuality.high,
+                ),
+              )),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => controller.saveToGallery(controller.path.value),
+        child: Icon(Icons.download),
       ),
     );
   }

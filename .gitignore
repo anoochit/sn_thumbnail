@@ -42,5 +42,13 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 .vscode/launch.json 
+<<<<<<< HEAD
 
 /gemini_cli/node_modules/*
+=======
+.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules
+storage.rules
+>>>>>>> gemini_image_gen
