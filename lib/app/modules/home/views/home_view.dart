@@ -69,9 +69,9 @@ class HomeView extends GetView<HomeController> {
       () => IndexedStack(
         index: controller.navIndex.value,
         children: const [
+          TemplateBodyView(),
           LibraryBodyView(),
           GalleryBodyView(),
-          TemplateBodyView(),
           SettingsBodyView(),
         ],
       ),
