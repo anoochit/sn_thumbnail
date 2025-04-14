@@ -7,9 +7,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:sn_thumbnail/app/modules/new_project/controllers/dragable_contreoller.dart';
+import 'package:sn_thumbnail/app/modules/new_project/controllers/new_project_controller.dart';
 
-import '../controllers/dragable_contreoller.dart';
-import '../controllers/new_project_controller.dart';
 import 'dragable_widget_view.dart';
 import 'genaibox_view.dart';
 import 'select_color_view.dart';
@@ -158,11 +158,6 @@ class NewProjectView extends GetView<NewProjectController> {
       child: Padding(
         padding: const EdgeInsets.all(32.0),
         child: LayoutBuilder(builder: (context, constraints) {
-          // controller.calculateCanvasSize(
-          //   constraints.maxWidth,
-          //   constraints.maxHeight,
-          // );
-
           return Screenshot(
             controller: controller.screenshotController,
             child: Container(
@@ -210,7 +205,6 @@ class NewProjectView extends GetView<NewProjectController> {
                           },
                           onTap: () {
                             log('tap inside');
-                            // controller.setEditVisible(true);
                             Get.put(DraggableController()).visible.value = true;
                           },
                           onTapOutside: (event) {
@@ -258,7 +252,6 @@ class NewProjectView extends GetView<NewProjectController> {
         },
         child: Icon(Icons.download),
       ),
-      // bottomNavigationBar: Obx(() => buildToolbar(context, controller)),
     );
   }
 }
