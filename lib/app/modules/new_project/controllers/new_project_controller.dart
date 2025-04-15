@@ -24,7 +24,7 @@ class NewProjectController extends GetxController {
   RxString ratio = "1:1".obs;
 
   TextEditingController textController = TextEditingController();
-  RxString text = 'Example Text'.obs;
+  RxString text = 'Text'.obs;
   RxDouble fontSize = 32.0.obs;
   RxBool isBold = false.obs;
   Rx<TextAlign> textAlign = TextAlign.left.obs;
@@ -49,12 +49,7 @@ class NewProjectController extends GetxController {
     width.value = double.parse(Get.parameters['width'] ?? '1200.00');
     height.value = double.parse(Get.parameters['height'] ?? '1200.00');
 
-    // double scWidth = double.parse(Get.parameters['scWidth']!);
-    // double scHeight = double.parse(Get.parameters['scHeight']!);
-
     ratio.value = Get.parameters['ratio'] ?? '1:1';
-
-    // canvasSize.value = calculateCanvasSize(scWidth, scHeight);
 
     // set default text
     textController.text = text.value;
@@ -161,8 +156,6 @@ class NewProjectController extends GetxController {
           // refresh lobrary
           final homeController = Get.find<HomeController>();
           homeController.loadFiles();
-          // show snackbar
-          // showGetXSnackBar(title: 'Info', message: 'Save to : ${file.path}');
         });
       } else {
         showGetXSnackBar(title: 'Error', message: 'Cannot capture image');
