@@ -14,7 +14,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     // check api key
-    // controller.checkAPIKey();
+    controller.checkAPIKey();
 
     return Scaffold(
       body: buildContent(context),
