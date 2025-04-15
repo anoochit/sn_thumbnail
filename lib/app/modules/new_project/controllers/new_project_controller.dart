@@ -19,10 +19,16 @@ import '../../home/controllers/home_controller.dart';
 import 'select_color_controller.dart';
 
 class NewProjectController extends GetxController {
+  // canvas size
   RxDouble width = 1200.00.obs;
   RxDouble height = 1200.00.obs;
   RxString ratio = "1:1".obs;
+  Rx<Size> canvasSize = Size.zero.obs;
 
+  // template
+  Rx<String> template = ''.obs;
+
+  // text
   TextEditingController textController = TextEditingController();
   RxString text = 'text'.obs;
   RxBool isBold = false.obs;
@@ -31,15 +37,14 @@ class NewProjectController extends GetxController {
   Rx<Color> fontColor = Colors.black.obs;
   Rx<Color> backgroundColor = Colors.white.obs;
 
+  // background image
   Rx<Uint8List> backgroundImageData = Uint8List(0).obs;
 
+  // screenshot controller
   ScreenshotController screenshotController = ScreenshotController();
 
+  // edit controller
   RxBool editVisible = true.obs;
-
-  Rx<Size> canvasSize = Size.zero.obs;
-
-  Rx<String> template = ''.obs;
 
   @override
   void onInit() {
@@ -55,6 +60,8 @@ class NewProjectController extends GetxController {
     textController.text = text.value;
   }
 
+  // calculate canvas size
+  // based on screen size and ratio
   Size calculateCanvasSize(
     double scwidth,
     double scheight,
