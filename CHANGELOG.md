@@ -38,3 +38,8 @@
 - Fix export ratio
 - Auto text size
 - Use gemini-2.0-flash
+
+## 1.0.14
+
+- add bulk export
+- check API keys in home screen
