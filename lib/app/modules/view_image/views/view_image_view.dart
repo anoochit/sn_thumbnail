@@ -11,10 +11,7 @@ class ViewImageView extends GetView<ViewImageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          // centerTitle: true,
-          ),
+      appBar: AppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

@@ -8,9 +8,9 @@ import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 
-import '../../../services/gemini.dart';
-import '../../../services/snackbar.dart';
-import '../controllers/genaibox_controller.dart';
+import '../../../../services/gemini.dart';
+import '../../../../services/snackbar.dart';
+import '../../controllers/genaibox_controller.dart';
 
 class GenAIBox extends GetView<GenAIBoxController> {
   const GenAIBox({

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/select_color_controller.dart';
+import '../../controllers/select_color_controller.dart';
 
 class SelectedColorView extends GetView<SelectColorController> {
   const SelectedColorView(

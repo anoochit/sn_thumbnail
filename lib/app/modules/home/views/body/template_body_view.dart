@@ -1,9 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:sn_thumbnail/app/data/project_canvas.dart';
 
+import 'package:sn_thumbnail/app/data/project_canvas.dart';
 import 'package:sn_thumbnail/app/routes/app_pages.dart';
 import 'package:sn_thumbnail/app/services/gridview.dart';
 
@@ -35,6 +37,7 @@ class TemplateBodyView extends GetView {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: InkWell(
                 onTap: () {
+                  log('open template $title');
                   Get.toNamed(Routes.NEW_PROJECT, parameters: {
                     'scWidth': '${constraints.maxWidth}',
                     'scHeight': '${constraints.maxHeight}',

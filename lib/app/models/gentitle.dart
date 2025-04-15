@@ -1,8 +1,8 @@
+import 'dart:convert';
+
 // To parse this JSON data, do
 //
 //     final genTitle = genTitleFromJson(jsonString);
-
-import 'dart:convert';
 
 List<GenTitle> genTitleFromJson(String str) =>
     List<GenTitle>.from(json.decode(str).map((x) => GenTitle.fromJson(x)));

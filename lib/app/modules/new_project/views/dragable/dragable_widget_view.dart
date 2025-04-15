@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/radix_icons.dart';
 
-import '../controllers/dragable_contreoller.dart';
+import '../../controllers/dragable_contreoller.dart';
 
 class DraggableWidgetView extends GetView<DraggableController> {
   const DraggableWidgetView({
@@ -149,7 +149,7 @@ class DraggableIconTopLeft extends StatelessWidget {
       child: const Iconify(
         RadixIcons.corner_top_left,
         color: Colors.greenAccent,
-        size: 36.0,
+        size: 24.0,
       ),
     );
   }
@@ -169,7 +169,7 @@ class DraggableIconTopRight extends StatelessWidget {
         child: Iconify(
           RadixIcons.corner_top_right,
           color: Colors.greenAccent,
-          size: 36.0,
+          size: 24.0,
         ),
       ),
     );
@@ -190,7 +190,7 @@ class DraggableIconBottomLeft extends StatelessWidget {
         child: Iconify(
           RadixIcons.corner_bottom_left,
           color: Colors.greenAccent,
-          size: 36.0,
+          size: 24.0,
         ),
       ),
     );
@@ -211,7 +211,7 @@ class DraggableIconBottomRight extends StatelessWidget {
         child: Iconify(
           RadixIcons.corner_bottom_right,
           color: Colors.greenAccent,
-          size: 36.0,
+          size: 24.0,
         ),
       ),
     );

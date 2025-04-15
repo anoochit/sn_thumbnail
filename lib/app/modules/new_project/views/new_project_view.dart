@@ -7,12 +7,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:sn_thumbnail/app/modules/new_project/controllers/dragable_contreoller.dart';
-import 'package:sn_thumbnail/app/modules/new_project/controllers/new_project_controller.dart';
 
-import 'dragable_widget_view.dart';
-import 'genaibox_view.dart';
-import 'select_color_view.dart';
+import '../controllers/dragable_contreoller.dart';
+import '../controllers/new_project_controller.dart';
+import 'dragable/dragable_widget_view.dart';
+import 'genai_dialog/genaibox_view.dart';
+import 'select_color/select_color_view.dart';
 
 class NewProjectView extends GetView<NewProjectController> {
   const NewProjectView({super.key});
@@ -168,24 +168,20 @@ class NewProjectView extends GetView<NewProjectController> {
                 onTap: () {
                   controller.setEditVisible(false);
                 },
-                child: Container(
-                  width: controller.canvasSize.value.width,
-                  height: controller.canvasSize.value.height,
-                  color: controller.backgroundColor.value,
-                  child: Stack(
-                    children: [
-                      // backgound image
-                      (controller.backgroundImageData.value.lengthInBytes == 0)
-                          ? const SizedBox()
-                          : Positioned.fill(
-                              child: Image.memory(
-                                controller.backgroundImageData.value,
-                                fit: BoxFit.cover,
-                              ),
+                child: Stack(
+                  children: [
+                    // backgound image
+                    (controller.backgroundImageData.value.lengthInBytes == 0)
+                        ? const SizedBox()
+                        : Positioned.fill(
+                            child: Image.memory(
+                              controller.backgroundImageData.value,
+                              fit: BoxFit.cover,
                             ),
-                      // text field
-                      DraggableWidgetView(
-                          child: Padding(
+                          ),
+                    // text field
+                    DraggableWidgetView(
+                      child: Padding(
                         padding: const EdgeInsets.all(36.0),
                         child: TextFormField(
                           controller: controller.textController,
@@ -214,9 +210,9 @@ class NewProjectView extends GetView<NewProjectController> {
                             FocusScope.of(context).requestFocus(FocusNode());
                           },
                         ),
-                      )),
-                    ],
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
