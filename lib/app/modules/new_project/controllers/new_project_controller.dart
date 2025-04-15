@@ -49,12 +49,12 @@ class NewProjectController extends GetxController {
     width.value = double.parse(Get.parameters['width'] ?? '1200.00');
     height.value = double.parse(Get.parameters['height'] ?? '1200.00');
 
-    double scWidth = double.parse(Get.parameters['scWidth']!);
-    double scHeight = double.parse(Get.parameters['scHeight']!);
+    // double scWidth = double.parse(Get.parameters['scWidth']!);
+    // double scHeight = double.parse(Get.parameters['scHeight']!);
 
     ratio.value = Get.parameters['ratio'] ?? '1:1';
 
-    canvasSize.value = calculateCanvasSize(scWidth, scHeight);
+    // canvasSize.value = calculateCanvasSize(scWidth, scHeight);
 
     // set default text
     textController.text = text.value;
@@ -72,7 +72,7 @@ class NewProjectController extends GetxController {
     final heightRatio = double.parse(ratioValue[1]);
 
     log('calculate size');
-    log('w=$widthRatio,h=$heightRatio');
+    log('wRatio=$widthRatio,hRatio=$heightRatio');
 
     w = scheight * (widthRatio / heightRatio);
     h = scwidth / (widthRatio / heightRatio);

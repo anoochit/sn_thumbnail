@@ -12,9 +12,7 @@ initWindows() {
       const initialSize = Size(1280, 720);
       appWindow.size = initialSize;
       appWindow.minSize = initialSize;
-      appWindow.alignment = Alignment.topRight;
-
-      appWindow.maximize();
+      appWindow.alignment = Alignment.center;
     });
   }
 }
