@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
+import 'package:shimmer_effect/shimmer_effect.dart';
 
 import '../../../../services/gemini.dart';
 import '../../../../services/snackbar.dart';
@@ -96,19 +97,61 @@ class GenAIBox extends GetView<GenAIBoxController> {
 
           // generating progress indicator
           Obx(
-            () => (controller.isLoading.value)
-                ? const Expanded(
-                    child: Center(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          CircularProgressIndicator.adaptive(),
-                          Text('Generating'),
-                        ],
-                      ),
+            () => ((controller.isLoading.value) &&
+                    controller.genAiType.value == PromptType.title)
+                ? Expanded(
+                    child: ListView.builder(
+                      itemCount: 4,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                            leading: const Icon(Icons.text_fields),
+                            title: ShimmerEffect(
+                              baseColor:
+                                  Theme.of(context).colorScheme.inversePrimary,
+                              highlightColor: Theme.of(context).canvasColor,
+                              child: Container(
+                                width: 200,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).colorScheme.surface,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ));
+                      },
                     ),
                   )
-                : const SizedBox(),
+                : ((controller.isLoading.value) &&
+                        controller.genAiType.value == PromptType.image)
+                    ? Expanded(
+                        child: GridView.builder(
+                          itemCount: 2,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 4),
+                          itemBuilder: (BuildContext context, int index) {
+                            return GridTile(
+                                child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              elevation: 0.0,
+                              child: ShimmerEffect(
+                                baseColor: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary,
+                                highlightColor: Theme.of(context).canvasColor,
+                                child: Container(
+                                  width: 200,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).canvasColor,
+                                  ),
+                                ),
+                              ),
+                            ));
+                          },
+                        ),
+                      )
+                    : const SizedBox(),
           ),
 
           // title generate result
@@ -163,35 +206,33 @@ class GenAIBox extends GetView<GenAIBoxController> {
                 )
               : Container()),
 
-          Obx(
-            () => ((controller.genAiType.value == PromptType.image) &&
-                    (!controller.isLoading.value) &&
-                    (controller.listGenImage.isNotEmpty))
-                ? Expanded(
-                    child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                      ),
-                      itemCount: controller.listGenImage.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final item = controller.listGenImage[index];
-                        final path = item.image;
-                        return Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: InkWell(
-                            onTap: () {
-                              controller.setImageToCanvas(path: path);
-                              Get.backLegacy();
-                            },
-                            child: Image.file(File(path!)),
-                          ),
-                        );
-                      },
+          Obx(() => ((controller.genAiType.value == PromptType.image) &&
+                  (!controller.isLoading.value) &&
+                  (controller.listGenImage.isNotEmpty))
+              ? Expanded(
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
                     ),
-                  )
-                : const SizedBox(),
-          ),
+                    itemCount: controller.listGenImage.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final item = controller.listGenImage[index];
+                      final path = item.image;
+                      return Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          onTap: () {
+                            controller.setImageToCanvas(path: path);
+                            Get.backLegacy();
+                          },
+                          child: Image.file(File(path!)),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              : Container()),
         ],
       ),
     );

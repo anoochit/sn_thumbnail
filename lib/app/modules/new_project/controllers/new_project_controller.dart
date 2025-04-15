@@ -26,6 +26,7 @@ class NewProjectController extends GetxController {
   TextEditingController textController = TextEditingController();
   RxString text = 'text'.obs;
   RxBool isBold = false.obs;
+  RxBool isItalic = false.obs;
   Rx<TextAlign> textAlign = TextAlign.left.obs;
   Rx<Color> fontColor = Colors.black.obs;
   Rx<Color> backgroundColor = Colors.white.obs;
@@ -78,6 +79,11 @@ class NewProjectController extends GetxController {
 
   void textToggleBold() {
     isBold.value = !isBold.value;
+    update();
+  }
+
+  void textToggleItalic() {
+    isItalic.value = !isItalic.value;
     update();
   }
 

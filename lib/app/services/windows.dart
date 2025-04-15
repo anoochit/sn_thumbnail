@@ -14,5 +14,7 @@ initWindows() {
       appWindow.minSize = initialSize;
       appWindow.alignment = Alignment.center;
     });
+
+    appWindow.show();
   }
 }

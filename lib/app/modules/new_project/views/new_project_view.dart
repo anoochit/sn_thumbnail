@@ -34,6 +34,13 @@ class NewProjectView extends GetView<NewProjectController> {
           },
           icon: const Icon(Icons.format_bold),
         ),
+        IconButton(
+          onPressed: () {
+            // text italic
+            controller.textToggleItalic();
+          },
+          icon: const Icon(Icons.format_italic),
+        ),
         Obx(
           () => Padding(
             padding: const EdgeInsets.all(4.0),
@@ -160,88 +167,105 @@ class NewProjectView extends GetView<NewProjectController> {
           log('canvasWidth = ${controller.canvasSize.value.width}');
           log('canvasHeight = ${controller.canvasSize.value.height}');
 
-          return Screenshot(
-            controller: controller.screenshotController,
-            child: Container(
-              width: controller.canvasSize.value.width,
-              height: controller.canvasSize.value.height,
-              color: Colors.white,
-              child: GestureDetector(
-                onTap: () {
-                  controller.setEditVisible(false);
-                },
-                child: Stack(
-                  children: [
-                    // backgound image
-                    (controller.backgroundImageData.value.lengthInBytes == 0)
-                        ? const SizedBox()
-                        : Positioned.fill(
-                            child: Image.memory(
-                              controller.backgroundImageData.value,
-                              fit: BoxFit.cover,
+          return Container(
+            decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 4.0,
+                  spreadRadius: 2.0,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Screenshot(
+              controller: controller.screenshotController,
+              child: Container(
+                width: controller.canvasSize.value.width,
+                height: controller.canvasSize.value.height,
+                color: Colors.white,
+                child: GestureDetector(
+                  onTap: () {
+                    controller.setEditVisible(false);
+                  },
+                  child: Stack(
+                    children: [
+                      // backgound image
+                      (controller.backgroundImageData.value.lengthInBytes == 0)
+                          ? const SizedBox()
+                          : Positioned.fill(
+                              child: Image.memory(
+                                controller.backgroundImageData.value,
+                                fit: BoxFit.cover,
+                              ),
                             ),
+                      // text field
+                      DraggableWidgetView(
+                        child: Padding(
+                          padding: const EdgeInsets.all(24.0),
+                          child: AutoSizeTextField(
+                            controller: controller.textController,
+                            minFontSize: 160.0,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                            ),
+                            textAlign: controller.textAlign.value,
+                            style: GoogleFonts.kanit(
+                              fontWeight: (controller.isBold.value)
+                                  ? FontWeight.w500
+                                  : FontWeight.w400,
+                              fontStyle: (controller.isItalic.value)
+                                  ? FontStyle.italic
+                                  : FontStyle.normal,
+                              color: controller.fontColor.value,
+                            ),
+                            maxLines: null,
+                            onChanged: (value) {
+                              controller.text.value = value;
+                            },
+                            onTap: () {
+                              log('tap inside');
+                              Get.put(DraggableController()).visible.value =
+                                  true;
+                            },
+                            onTapOutside: (event) {
+                              log('tap outside');
+                              Get.put(DraggableController()).visible.value =
+                                  false;
+                              FocusScope.of(context).requestFocus(FocusNode());
+                            },
                           ),
-                    // text field
-                    DraggableWidgetView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(24.0),
-                        child: AutoSizeTextField(
-                          controller: controller.textController,
-                          minFontSize: 160.0,
-                          decoration:
-                              const InputDecoration(border: InputBorder.none),
-                          textAlign: controller.textAlign.value,
-                          style: GoogleFonts.kanit(
-                            fontWeight: (controller.isBold.value)
-                                ? FontWeight.w500
-                                : FontWeight.w400,
-                            color: controller.fontColor.value,
-                          ),
-                          maxLines: null,
-                          onChanged: (value) {
-                            controller.text.value = value;
-                          },
-                          onTap: () {
-                            log('tap inside');
-                            Get.put(DraggableController()).visible.value = true;
-                          },
-                          onTapOutside: (event) {
-                            log('tap outside');
-                            Get.put(DraggableController()).visible.value =
-                                false;
-                            FocusScope.of(context).requestFocus(FocusNode());
-                          },
+                          // child: TextFormField(
+                          //   controller: controller.textController,
+                          //   decoration:
+                          //       const InputDecoration(border: InputBorder.none),
+                          //   textAlign: controller.textAlign.value,
+                          //   style: GoogleFonts.kanit(
+                          //     fontSize: controller.fontSize.value,
+                          //     fontWeight: (controller.isBold.value)
+                          //         ? FontWeight.w500
+                          //         : FontWeight.w400,
+                          //     color: controller.fontColor.value,
+                          //   ),
+                          //   maxLines: null,
+                          //   onChanged: (value) {
+                          //     controller.text.value = value;
+                          //   },
+                          //   onTap: () {
+                          //     log('tap inside');
+                          //     Get.put(DraggableController()).visible.value = true;
+                          //   },
+                          //   onTapOutside: (event) {
+                          //     log('tap outside');
+                          //     Get.put(DraggableController()).visible.value =
+                          //         false;
+                          //     FocusScope.of(context).requestFocus(FocusNode());
+                          //   },
+                          // ),
                         ),
-                        // child: TextFormField(
-                        //   controller: controller.textController,
-                        //   decoration:
-                        //       const InputDecoration(border: InputBorder.none),
-                        //   textAlign: controller.textAlign.value,
-                        //   style: GoogleFonts.kanit(
-                        //     fontSize: controller.fontSize.value,
-                        //     fontWeight: (controller.isBold.value)
-                        //         ? FontWeight.w500
-                        //         : FontWeight.w400,
-                        //     color: controller.fontColor.value,
-                        //   ),
-                        //   maxLines: null,
-                        //   onChanged: (value) {
-                        //     controller.text.value = value;
-                        //   },
-                        //   onTap: () {
-                        //     log('tap inside');
-                        //     Get.put(DraggableController()).visible.value = true;
-                        //   },
-                        //   onTapOutside: (event) {
-                        //     log('tap outside');
-                        //     Get.put(DraggableController()).visible.value =
-                        //         false;
-                        //     FocusScope.of(context).requestFocus(FocusNode());
-                        //   },
-                        // ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
