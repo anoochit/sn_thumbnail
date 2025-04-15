@@ -24,8 +24,7 @@ class NewProjectController extends GetxController {
   RxString ratio = "1:1".obs;
 
   TextEditingController textController = TextEditingController();
-  RxString text = 'Text'.obs;
-  RxDouble fontSize = 32.0.obs;
+  RxString text = 'text'.obs;
   RxBool isBold = false.obs;
   Rx<TextAlign> textAlign = TextAlign.left.obs;
   Rx<Color> fontColor = Colors.black.obs;
@@ -75,16 +74,6 @@ class NewProjectController extends GetxController {
     canvasSize.value = Size(w, h);
 
     return Size((w), (h));
-  }
-
-  void textIncrease() {
-    fontSize.value = fontSize.value + 2;
-    update();
-  }
-
-  void textDecrease() {
-    fontSize.value = fontSize.value - 2;
-    update();
   }
 
   void textToggleBold() {

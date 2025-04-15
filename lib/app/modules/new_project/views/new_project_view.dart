@@ -29,20 +29,6 @@ class NewProjectView extends GetView<NewProjectController> {
       children: [
         IconButton(
           onPressed: () {
-            // text increase
-            controller.textIncrease();
-          },
-          icon: const Icon(Icons.text_increase),
-        ),
-        IconButton(
-          onPressed: () {
-            // text decrease
-            controller.textDecrease();
-          },
-          icon: const Icon(Icons.text_decrease),
-        ),
-        IconButton(
-          onPressed: () {
             // text bold
             controller.textToggleBold();
           },
@@ -206,7 +192,6 @@ class NewProjectView extends GetView<NewProjectController> {
                               const InputDecoration(border: InputBorder.none),
                           textAlign: controller.textAlign.value,
                           style: GoogleFonts.kanit(
-                            fontSize: controller.fontSize.value,
                             fontWeight: (controller.isBold.value)
                                 ? FontWeight.w500
                                 : FontWeight.w400,
