@@ -50,6 +50,8 @@ class GenAIBox extends GetView<GenAIBoxController> {
           const Gap(8.0),
           TextFormField(
             controller: controller.promptTextController,
+            maxLines: null,
+            minLines: 3,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16.0),

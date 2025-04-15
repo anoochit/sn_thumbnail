@@ -46,6 +46,11 @@ class NewProjectController extends GetxController {
   // edit controller
   RxBool editVisible = true.obs;
 
+  // bulk text
+  RxString bulkText = ''.obs;
+  RxBool isBulkTextVisible = false.obs;
+  TextEditingController bulkTextController = TextEditingController();
+
   @override
   void onInit() {
     super.onInit();
@@ -181,7 +186,10 @@ class NewProjectController extends GetxController {
     // save to gallery
     if (Platform.isAndroid || Platform.isIOS) {
       await ImageGallerySaverPlus.saveFile(filePath).then((v) {
-        showGetXSnackBar(title: 'Saved', message: 'Save to gallery!');
+        showGetXSnackBar(
+          title: 'Saved',
+          message: 'Save to gallery!',
+        );
       });
     } else {
       showGetXSnackBar(title: 'Saved', message: 'Save to document!');

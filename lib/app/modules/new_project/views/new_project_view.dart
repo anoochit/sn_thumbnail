@@ -95,12 +95,69 @@ class NewProjectView extends GetView<NewProjectController> {
         ),
         IconButton(
           onPressed: () {
+            // bulk text dialog
+            buildBulkTextDialog(context, controller);
+          },
+          icon: const Icon(Icons.view_list),
+        ),
+        IconButton(
+          onPressed: () {
             // gen ai dialog
             buildGenAIDialog(context, controller);
           },
           icon: const Iconify(Ph.star_four_duotone),
         ),
       ],
+    );
+  }
+
+  void buildBulkTextDialog(
+      BuildContext context, NewProjectController controller) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Bulk Text'),
+          content: Container(
+            width:
+                (context.width > 400) ? (context.width * 0.5) : context.width,
+            height: 440,
+            child: TextFormField(
+              controller: controller.bulkTextController,
+              maxLines: null,
+              minLines: 20,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12.0),
+                  ),
+                ),
+                hintText: 'Enter text line by line',
+              ),
+              onChanged: (value) {
+                controller.bulkText.value = value;
+              },
+            ),
+          ),
+          actions: [
+            FilledButton.tonal(
+              onPressed: () {
+                controller.bulkTextController.clear();
+              },
+              child: const Text('Clear'),
+            ),
+            FilledButton.tonal(
+              onPressed: () {
+                controller.textController.text =
+                    controller.bulkTextController.text.trim().split('\n')[0];
+                Get.backLegacy();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -144,11 +201,24 @@ class NewProjectView extends GetView<NewProjectController> {
     );
   }
 
-  exportImage(NewProjectController controller, BuildContext context) {
+  exportImage(NewProjectController controller, BuildContext context) async {
     // hide selected border
     hideDraggableBorder();
-    // export image
-    controller.exportImage();
+    // export multiple image
+    if (controller.bulkTextController.text.isNotEmpty) {
+      List<String> titles =
+          controller.bulkTextController.text.trim().split('\n');
+
+      for (var title in titles) {
+        // insert text to text field
+        controller.textController.text = title;
+        // export image
+        await controller.exportImage();
+      }
+    } else {
+      // export single image
+      controller.exportImage();
+    }
   }
 
   Widget buildCanvas(NewProjectController controller, BuildContext context) {
@@ -235,33 +305,6 @@ class NewProjectView extends GetView<NewProjectController> {
                               FocusScope.of(context).requestFocus(FocusNode());
                             },
                           ),
-                          // child: TextFormField(
-                          //   controller: controller.textController,
-                          //   decoration:
-                          //       const InputDecoration(border: InputBorder.none),
-                          //   textAlign: controller.textAlign.value,
-                          //   style: GoogleFonts.kanit(
-                          //     fontSize: controller.fontSize.value,
-                          //     fontWeight: (controller.isBold.value)
-                          //         ? FontWeight.w500
-                          //         : FontWeight.w400,
-                          //     color: controller.fontColor.value,
-                          //   ),
-                          //   maxLines: null,
-                          //   onChanged: (value) {
-                          //     controller.text.value = value;
-                          //   },
-                          //   onTap: () {
-                          //     log('tap inside');
-                          //     Get.put(DraggableController()).visible.value = true;
-                          //   },
-                          //   onTapOutside: (event) {
-                          //     log('tap outside');
-                          //     Get.put(DraggableController()).visible.value =
-                          //         false;
-                          //     FocusScope.of(context).requestFocus(FocusNode());
-                          //   },
-                          // ),
                         ),
                       ),
                     ],
