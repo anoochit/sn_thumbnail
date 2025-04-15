@@ -32,3 +32,9 @@
 
 - Update canvas layout
 - Fix export ratio
+
+## 1.0.13
+
+- Fix export ratio
+- Auto text size
+- Use gemini-2.0-flash
