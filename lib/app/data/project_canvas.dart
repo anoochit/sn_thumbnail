@@ -75,4 +75,18 @@ final listCanvas = [
     ratio: "1.91:1",
     icon: FaSolid.globe,
   ),
+  ProjectCanvas(
+    title: 'A4',
+    width: 2480.00,
+    height: 3508.00,
+    ratio: "620:877",
+    icon: FaSolid.file,
+  ),
+  ProjectCanvas(
+    title: 'A5',
+    width: 1748.00,
+    height: 2480.00,
+    ratio: "437:620",
+    icon: FaSolid.file,
+  ),
 ];
